@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQAccordion();
   initSmoothAnchors();
   initAutoHideMessages();
+  initAtmosphere();
 });
 
 
@@ -117,4 +118,31 @@ function initAutoHideMessages() {
     messages.style.opacity = '0';
     setTimeout(() => messages.remove(), 500);
   }, 5000);
+}
+
+/* ─── Quiet movement for the shared digital atmosphere ─── */
+function initAtmosphere() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const root = document.documentElement;
+  let frame = null;
+  let pointerX = 0;
+  let pointerY = 0;
+
+  const update = () => {
+    root.style.setProperty('--pointer-x', `${pointerX * 0.35}px`);
+    root.style.setProperty('--pointer-y', `${pointerY * 0.35}px`);
+    root.style.setProperty('--scroll-depth', `${Math.min(window.scrollY * 0.025, 18)}px`);
+    frame = null;
+  };
+
+  window.addEventListener('pointermove', event => {
+    pointerX = (event.clientX / window.innerWidth - 0.5) * 24;
+    pointerY = (event.clientY / window.innerHeight - 0.5) * 24;
+    if (!frame) frame = requestAnimationFrame(update);
+  }, { passive: true });
+
+  window.addEventListener('scroll', () => {
+    if (!frame) frame = requestAnimationFrame(update);
+  }, { passive: true });
 }
