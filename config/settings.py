@@ -15,7 +15,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ENVIRONMENT VARIABLES
 # ============================================================
 
-# Load variables from .env
+# .env is located in the project root, one level above /config
 load_dotenv(BASE_DIR / ".env")
 
 
@@ -44,6 +44,7 @@ ALLOWED_HOSTS = [
 # ============================================================
 
 INSTALLED_APPS = [
+    # Django
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -51,14 +52,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    # Cloudinary
+    "cloudinary",
+    "cloudinary_storage",
+
     # Project apps
     "apps.core",
     "apps.services",
     "apps.portfolio",
     "apps.contact",
-
-    "cloudinary",
-    "cloudinary_storage", 
 ]
 
 
@@ -68,11 +70,17 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+
     "django.contrib.sessions.middleware.SessionMiddleware",
+
     "django.middleware.common.CommonMiddleware",
+
     "django.middleware.csrf.CsrfViewMiddleware",
+
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+
     "django.contrib.messages.middleware.MessageMiddleware",
+
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
@@ -101,7 +109,9 @@ TEMPLATES = [
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.request",
+
                 "django.contrib.auth.context_processors.auth",
+
                 "django.contrib.messages.context_processors.messages",
             ],
         },
@@ -203,17 +213,31 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 # ============================================================
-# MEDIA FILES
+# CLOUDINARY
 # ============================================================
 
-MEDIA_URL = "/media/"
-
-MEDIA_ROOT = BASE_DIR / "media"
-
-
 CLOUDINARY_CLOUD_NAME = os.getenv("CLOUDINARY_CLOUD_NAME")
+
 CLOUDINARY_API_KEY = os.getenv("CLOUDINARY_API_KEY")
+
 CLOUDINARY_API_SECRET = os.getenv("CLOUDINARY_API_SECRET")
+
+
+if not CLOUDINARY_CLOUD_NAME:
+    raise ValueError(
+        "CLOUDINARY_CLOUD_NAME is not set in the environment."
+    )
+
+if not CLOUDINARY_API_KEY:
+    raise ValueError(
+        "CLOUDINARY_API_KEY is not set in the environment."
+    )
+
+if not CLOUDINARY_API_SECRET:
+    raise ValueError(
+        "CLOUDINARY_API_SECRET is not set in the environment."
+    )
+
 
 CLOUDINARY_STORAGE = {
     "CLOUD_NAME": CLOUDINARY_CLOUD_NAME,
@@ -222,7 +246,22 @@ CLOUDINARY_STORAGE = {
     "SECURE": True,
 }
 
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+# ============================================================
+# FILE STORAGE
+# ============================================================
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
+
 # ============================================================
 # EMAIL
 # ============================================================
@@ -239,7 +278,10 @@ EMAIL_BACKEND = os.getenv(
 
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()
-    for origin in os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",")
+    for origin in os.getenv(
+        "CSRF_TRUSTED_ORIGINS",
+        ""
+    ).split(",")
     if origin.strip()
 ]
 
@@ -249,7 +291,11 @@ CSRF_TRUSTED_ORIGINS = [
 # ============================================================
 
 if not DEBUG:
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+    SECURE_PROXY_SSL_HEADER = (
+        "HTTP_X_FORWARDED_PROTO",
+        "https",
+    )
 
     SESSION_COOKIE_SECURE = True
 
