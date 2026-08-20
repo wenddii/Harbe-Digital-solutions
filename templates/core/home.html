@@ -1,143 +1,383 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}
-{% if company %}{{ company.name }} | {{ company.tagline }}{% else %}Harbe Digital Solutions | Building Digital Solutions{% endif %}
-{% endblock %}
+{% block title %}Harbe Digital Solutions — We Build Digital Systems for Businesses{% endblock %}
 
-{% block description %}
-{% if company %}{{ company.about|truncatewords:30 }}{% else %}Harbe Digital Solutions builds modern software solutions for businesses.{% endif %}
-{% endblock %}
+{% block description %}Harbe Digital Solutions designs and builds modern software systems, business platforms, mobile applications, and AI-powered solutions for businesses ready to grow.{% endblock %}
 
 {% block content %}
 
-<!-- Hero Section -->
-<section>
-    <div>
-        {% if company and company.logo %}
-            <img src="{{ company.logo.url }}" alt="{{ company.name }} Logo">
-        {% endif %}
-        <p>{{ company.name|default:"Harbe Digital Solutions" }}</p>
-        <h1>
-            {{ company.tagline|default:"We build software that helps businesses grow." }}
-        </h1>
-        <p>
-            {{ company.about|default:"We design and develop modern websites, business systems, mobile applications, and AI-powered solutions." }}
-        </p>
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero">
+    <div class="hero__glow"></div>
 
-        <a href="{% url 'contact:contact' %}">Start a Project</a>
-        <a href="{% url 'portfolio:list' %}">View Our Work</a>
+    <div class="container container--wide">
+        <div class="hero__inner">
+
+            <div class="hero__content">
+                <div class="hero__eyebrow">
+                    <span class="hero__eyebrow-dot"></span>
+                    Software Engineering &amp; Digital Solutions
+                </div>
+
+                <h1 class="hero__title">
+                    We build digital<br>
+                    systems for businesses<br>
+                    <span class="text-gradient">ready to grow.</span>
+                </h1>
+
+                <p class="hero__subtitle">
+                    From your first digital presence to the systems running your entire operation — we design, build, and ship real software.
+                </p>
+
+                <div class="hero__actions">
+                    <a href="{% url 'contact:contact' %}" class="btn btn--primary">
+                        Start a Project
+                        <span class="btn__arrow">→</span>
+                    </a>
+                    <a href="{% url 'portfolio:list' %}" class="btn btn--outline">
+                        View Our Work
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero__visual">
+                <div class="hero__image-wrapper">
+                    <img src="{% static 'images/hero-team.jpg' %}" alt="Harbe Digital Solutions team collaborating on software" loading="eager">
+                </div>
+
+                <!-- Floating elements -->
+                <div class="hero__float hero__float--top">
+                    <span class="hero__float-status"></span>
+                    Systems Online
+                </div>
+                <div class="hero__float hero__float--left">
+                    deploy → production
+                </div>
+                <div class="hero__float hero__float--bottom">
+                    // building solutions
+                </div>
+            </div>
+
+        </div>
     </div>
 </section>
 
-<!-- Featured Services Section -->
-<section>
-    <h2>Our Featured Services</h2>
-    <p>Technology solutions designed around real business problems.</p>
-    {% if featured_services %}
-        <ul>
+
+<!-- ═══════════ SERVICES ═══════════ -->
+<section class="section services-section">
+    <div class="container">
+
+        <div class="section__header reveal">
+            <p class="label">What We Do</p>
+            <h2 class="section__title">From your first website to the<br>systems running your business.</h2>
+            <p class="section__subtitle">Technology solutions designed around real business problems.</p>
+        </div>
+
+        {% if featured_services %}
+        <div class="services-grid reveal reveal--delay-2">
             {% for service in featured_services %}
-            <li>
-                {% if service.image %}
-                    <img src="{{ service.image.url }}" alt="{{ service.name }}">
-                {% endif %}
-                <h3>
-                    <a href="{% url 'services:detail' service.pk %}">{{ service.name }}</a>
-                </h3>
+            <a href="{% url 'services:detail' service.pk %}" class="service-card">
+                <div class="service-card__index mono">0{{ forloop.counter }}</div>
                 {% if service.icon %}
-                    <span>Icon: {{ service.icon }}</span>
+                <div class="service-card__icon">
+                    <i class="{{ service.icon }}"></i>
+                </div>
                 {% endif %}
-                <p>{{ service.short_description }}</p>
-                <a href="{% url 'services:detail' service.pk %}">Learn More</a>
-            </li>
+                <h3 class="service-card__title">{{ service.name }}</h3>
+                <p class="service-card__desc">{{ service.short_description }}</p>
+                <span class="service-card__arrow">Learn more →</span>
+            </a>
             {% endfor %}
-        </ul>
-    {% else %}
-        <p>No featured services available at the moment.</p>
-    {% endif %}
-    <a href="{% url 'services:list' %}">View All Services</a>
+        </div>
+        {% else %}
+        <div class="services-grid reveal reveal--delay-2">
+            <div class="service-card">
+                <div class="service-card__index mono">01</div>
+                <h3 class="service-card__title">Web Development</h3>
+                <p class="service-card__desc">High-performance websites and web applications that establish your digital presence.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-card__index mono">02</div>
+                <h3 class="service-card__title">Business Systems</h3>
+                <p class="service-card__desc">Custom management platforms that streamline your operations and improve efficiency.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-card__index mono">03</div>
+                <h3 class="service-card__title">Custom Software</h3>
+                <p class="service-card__desc">Tailored software solutions engineered specifically for your business requirements.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-card__index mono">04</div>
+                <h3 class="service-card__title">Mobile Apps</h3>
+                <p class="service-card__desc">Native and cross-platform mobile applications that reach your customers anywhere.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-card__index mono">05</div>
+                <h3 class="service-card__title">AI &amp; Automation</h3>
+                <p class="service-card__desc">Intelligent automation and AI-powered tools that reduce manual work and scale operations.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-card__index mono">06</div>
+                <h3 class="service-card__title">Technical Support</h3>
+                <p class="service-card__desc">Ongoing maintenance, monitoring, and support to keep your systems running at peak performance.</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <div style="text-align: center; margin-top: var(--s-2xl);" class="reveal reveal--delay-3">
+            <a href="{% url 'services:list' %}" class="btn btn--ghost">
+                View All Services <span class="btn__arrow">→</span>
+            </a>
+        </div>
+
+    </div>
 </section>
 
-<!-- Featured Projects Section -->
-<section>
-    <h2>Featured Work</h2>
-    <p>Explore some of the projects we have built.</p>
-    {% if featured_projects %}
-        <ul>
-            {% for project in featured_projects %}
-            <li>
-                {% if project.cover_image %}
-                    <img src="{{ project.cover_image.url }}" alt="{{ project.title }}">
-                {% endif %}
-                <h3>
-                    <a href="{% url 'portfolio:detail' project.pk %}">{{ project.title }}</a>
-                </h3>
-                {% if project.client %}
-                    <p><strong>Client:</strong> {{ project.client }}</p>
-                {% endif %}
-                <p>{{ project.short_description }}</p>
-                <a href="{% url 'portfolio:detail' project.pk %}">View Project</a>
-            </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No featured projects available at the moment.</p>
-    {% endif %}
-    <a href="{% url 'portfolio:list' %}">View All Portfolio Projects</a>
+
+<!-- ═══════════ WORK / PORTFOLIO ═══════════ -->
+<section class="section work-section">
+    <div class="container">
+
+        <div class="section__header reveal">
+            <p class="label">Selected Work</p>
+            <h2 class="section__title">We don't just design pages.<br>We build systems.</h2>
+            <p class="section__subtitle">Real products built for real businesses.</p>
+        </div>
+
+        <div class="project-showcase">
+            {% if featured_projects %}
+                {% for project in featured_projects %}
+                <div class="project-card reveal">
+                    <div class="project-card__visual">
+                        {% if project.cover_image %}
+                            <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" loading="lazy">
+                        {% else %}
+                            <div class="project-card__visual-placeholder">{{ project.title }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="project-card__content">
+                        {% if project.client %}
+                        <p class="project-card__label">{{ project.client }}</p>
+                        {% else %}
+                        <p class="project-card__label">Project</p>
+                        {% endif %}
+                        <h3 class="project-card__title">{{ project.title }}</h3>
+                        <p class="project-card__desc">{{ project.short_description }}</p>
+                        <a href="{% url 'portfolio:detail' project.pk %}" class="btn btn--outline">
+                            View Project <span class="btn__arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="project-card reveal">
+                    <div class="project-card__visual">
+                        <div class="project-card__visual-placeholder">Coming Soon</div>
+                    </div>
+                    <div class="project-card__content">
+                        <p class="project-card__label">Portfolio</p>
+                        <h3 class="project-card__title">Projects in Development</h3>
+                        <p class="project-card__desc">We are currently building exciting projects. Check back soon to see our latest work and case studies.</p>
+                        <a href="{% url 'contact:contact' %}" class="btn btn--outline">
+                            Discuss Your Project <span class="btn__arrow">→</span>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <div style="text-align: center; margin-top: var(--s-3xl);" class="reveal">
+            <a href="{% url 'portfolio:list' %}" class="btn btn--ghost">
+                View All Projects <span class="btn__arrow">→</span>
+            </a>
+        </div>
+
+    </div>
 </section>
 
-<!-- Team Section -->
-<section>
-    <h2>Our Team</h2>
-    <p>Meet the people building solutions for you.</p>
-    {% if team_members %}
-        <ul>
+
+<!-- ═══════════ PROCESS ═══════════ -->
+<section class="section process-section">
+    <div class="container">
+
+        <div class="section__header reveal">
+            <p class="label">How We Work</p>
+            <h2 class="section__title">From idea to working product.</h2>
+            <p class="section__subtitle">A clear, structured approach to every project.</p>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-step reveal reveal--delay-1">
+                <div class="process-step__number">01</div>
+                <h3 class="process-step__title">Understand</h3>
+                <p class="process-step__desc">We learn how your business works and where technology can improve it.</p>
+            </div>
+            <div class="process-step reveal reveal--delay-2">
+                <div class="process-step__number">02</div>
+                <h3 class="process-step__title">Design</h3>
+                <p class="process-step__desc">We turn the problem into a clear, practical digital solution.</p>
+            </div>
+            <div class="process-step reveal reveal--delay-3">
+                <div class="process-step__number">03</div>
+                <h3 class="process-step__title">Build</h3>
+                <p class="process-step__desc">We develop, test, and refine the system until it works exactly right.</p>
+            </div>
+            <div class="process-step reveal reveal--delay-4">
+                <div class="process-step__number">04</div>
+                <h3 class="process-step__title">Launch</h3>
+                <p class="process-step__desc">We deploy your product and provide continued support and improvement.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ═══════════ TEAM ═══════════ -->
+<section class="section team-section">
+    <div class="container">
+
+        <div class="team-header reveal">
+            <div class="team-header__content">
+                <p class="label">Who We Are</p>
+                <h2 class="team-header__title">Small team.<br>Serious ambition.</h2>
+                <p class="team-header__text">
+                    We are a focused group of engineers and designers building a technology company around one idea: businesses deserve software that actually works for them.
+                </p>
+            </div>
+            <div class="team-header__visual">
+                <img src="{% static 'images/hero-team.jpg' %}" alt="Harbe Digital Solutions team" loading="lazy">
+            </div>
+        </div>
+
+        {% if team_members %}
+        <div class="team-grid">
             {% for member in team_members %}
-            <li>
+            <div class="team-member reveal reveal--delay-{{ forloop.counter }}">
                 {% if member.photo %}
-                    <img src="{{ member.photo.url }}" alt="{{ member.full_name }}">
+                    <img src="{{ member.photo.url }}" alt="{{ member.full_name }}" class="team-member__photo" loading="lazy">
+                {% else %}
+                    <div class="team-member__photo-placeholder">{{ member.full_name|first }}</div>
                 {% endif %}
-                <h3>{{ member.full_name }}</h3>
-                <p><strong>{{ member.position }}</strong></p>
-                <p>{{ member.bio }}</p>
-                {% if member.email %}
-                    <a href="mailto:{{ member.email }}">Email</a>
-                {% endif %}
-                {% if member.linkedin %}
-                    <a href="{{ member.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
-                {% endif %}
-                {% if member.github %}
-                    <a href="{{ member.github }}" target="_blank" rel="noopener">GitHub</a>
-                {% endif %}
-            </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No team members listed yet.</p>
-    {% endif %}
-</section>
-
-<!-- FAQ Section -->
-<section>
-    <h2>Frequently Asked Questions</h2>
-    {% if faqs %}
-        <div>
-            {% for faq in faqs %}
-            <div>
-                <h3>{{ faq.question }}</h3>
-                <p>{{ faq.answer }}</p>
+                <h3 class="team-member__name">{{ member.full_name }}</h3>
+                <p class="team-member__role">{{ member.position }}</p>
+                <p class="team-member__bio">{{ member.bio|truncatewords:30 }}</p>
+                <div class="team-member__links">
+                    {% if member.linkedin %}
+                    <a href="{{ member.linkedin }}" target="_blank" rel="noopener" class="team-member__link">LinkedIn</a>
+                    {% endif %}
+                    {% if member.github %}
+                    <a href="{{ member.github }}" target="_blank" rel="noopener" class="team-member__link">GitHub</a>
+                    {% endif %}
+                    {% if member.email %}
+                    <a href="mailto:{{ member.email }}" class="team-member__link">Email</a>
+                    {% endif %}
+                </div>
             </div>
             {% endfor %}
         </div>
-    {% else %}
-        <p>No FAQs available.</p>
-    {% endif %}
+        {% endif %}
+
+    </div>
 </section>
 
-<!-- Call to Action Section -->
-<section>
-    <h2>Let's Work Together</h2>
-    <p>Have a business problem that software could solve?</p>
-    <a href="{% url 'contact:contact' %}">Contact Us</a>
+
+<!-- ═══════════ WHY HARBE ═══════════ -->
+<section class="section">
+    <div class="container">
+
+        <div class="section__header reveal">
+            <p class="label">Why Harbe</p>
+            <h2 class="section__title">Built different. On purpose.</h2>
+        </div>
+
+        <div class="why-grid">
+            <div class="why-card reveal reveal--delay-1">
+                <div class="why-card__icon">⬡</div>
+                <h3 class="why-card__title">Built Around Your Business</h3>
+                <p class="why-card__desc">We don't sell templates. Every solution is engineered around how your business actually operates.</p>
+            </div>
+            <div class="why-card reveal reveal--delay-2">
+                <div class="why-card__icon">◈</div>
+                <h3 class="why-card__title">Modern Technology</h3>
+                <p class="why-card__desc">We use current, proven technologies that scale with your growth and adapt to change.</p>
+            </div>
+            <div class="why-card reveal reveal--delay-3">
+                <div class="why-card__icon">◎</div>
+                <h3 class="why-card__title">Practical Solutions</h3>
+                <p class="why-card__desc">We focus on what works. No unnecessary complexity — just reliable systems that deliver results.</p>
+            </div>
+            <div class="why-card reveal reveal--delay-1">
+                <div class="why-card__icon">⟡</div>
+                <h3 class="why-card__title">Long-Term Support</h3>
+                <p class="why-card__desc">We don't disappear after launch. We maintain, improve, and support the products we build.</p>
+            </div>
+            <div class="why-card reveal reveal--delay-2">
+                <div class="why-card__icon">⬢</div>
+                <h3 class="why-card__title">Direct Communication</h3>
+                <p class="why-card__desc">No account managers or ticket queues. You talk directly to the people building your product.</p>
+            </div>
+            <div class="why-card reveal reveal--delay-3">
+                <div class="why-card__icon">◇</div>
+                <h3 class="why-card__title">Focus on Results</h3>
+                <p class="why-card__desc">We measure success by the real impact our software has on your business operations and growth.</p>
+            </div>
+        </div>
+
+    </div>
 </section>
 
-{% endblock %}
+
+<!-- ═══════════ FAQ ═══════════ -->
+{% if faqs %}
+<section class="section">
+    <div class="container container--narrow">
+
+        <div class="section__header reveal">
+            <p class="label">FAQ</p>
+            <h2 class="section__title">Common questions.</h2>
+        </div>
+
+        <div class="faq-list reveal reveal--delay-1">
+            {% for faq in faqs %}
+            <div class="faq-item">
+                <button class="faq-item__question" type="button" aria-expanded="false">
+                    {{ faq.question }}
+                    <span class="faq-item__icon">+</span>
+                </button>
+                <div class="faq-item__answer">
+                    <p>{{ faq.answer }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+{% endif %}
+
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="section cta-section">
+    <div class="cta-section__glow"></div>
+    <div class="container container--narrow">
+
+        <div class="reveal">
+            <p class="label" style="text-align:center; margin-bottom: var(--s-lg);">Ready?</p>
+            <h2 class="cta-section__title">Have a business problem<br>worth solving?</h2>
+            <p class="cta-section__subtitle">Let's talk about what you need and how we can build it.</p>
+            <div class="cta-section__actions">
+                <a href="{% url 'contact:contact' %}" class="btn btn--primary">
+                    Start a Project <span class="btn__arrow">→</span>
+                </a>
+                <a href="{% url 'contact:contact' %}" class="btn btn--outline">
+                    Talk to Us
+                </a>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

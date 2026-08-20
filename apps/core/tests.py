@@ -126,7 +126,7 @@ class WebsiteTests(TestCase):
         response = self.client.get(reverse("contact:contact"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "contact/contact.html")
-        self.assertContains(response, "Send Us a Message")
+        self.assertContains(response, "Send us a message")
 
     def test_contact_page_post_success(self):
         post_data = {

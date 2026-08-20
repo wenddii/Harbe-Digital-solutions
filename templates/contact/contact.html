@@ -1,98 +1,124 @@
 {% extends "base.html" %}
 
-{% block title %}Contact Us | Harbe Digital Solutions{% endblock %}
+{% block title %}Contact Us — Harbe Digital Solutions{% endblock %}
 
-{% block description %}Get in touch with Harbe Digital Solutions to discuss your next software project or request a quote.{% endblock %}
+{% block description %}Get in touch with Harbe Digital Solutions to discuss your next software project. Start a project or request a consultation.{% endblock %}
 
 {% block content %}
 
-<section>
-    <h1>Contact Us</h1>
-    <p>Have a question, feedback, or a project to discuss? Send us a message and we'll get back to you promptly.</p>
+<section class="contact-page section">
+    <div class="container">
 
-    <!-- Direct Company Info -->
-    {% if company %}
-    <div>
-        <h2>Get in Touch Directly</h2>
-        <ul>
-            {% if company.email %}
-                <li><strong>Email:</strong> <a href="mailto:{{ company.email }}">{{ company.email }}</a></li>
-            {% endif %}
-            {% if company.phone %}
-                <li><strong>Phone:</strong> <a href="tel:{{ company.phone }}">{{ company.phone }}</a></li>
-            {% endif %}
-            {% if company.address %}
-                <li><strong>Address:</strong> {{ company.address }}</li>
-            {% endif %}
-        </ul>
-    </div>
-    {% endif %}
+        <div class="contact-grid">
 
-    <!-- Contact Form -->
-    <div>
-        <h2>Send Us a Message</h2>
+            <!-- Left: Info -->
+            <div class="contact-info reveal">
+                <p class="label">Contact</p>
+                <h1 class="contact-info__title">Let's build<br>something together.</h1>
+                <p class="contact-info__text">
+                    Have a project in mind? A problem that needs solving? Or just want to learn more about how we work? We'd love to hear from you.
+                </p>
 
-        {% if form.non_field_errors %}
-            <div>
-                {% for error in form.non_field_errors %}
-                    <p style="color: red;">{{ error }}</p>
-                {% endfor %}
-            </div>
-        {% endif %}
+                {% if company %}
+                    {% if company.email %}
+                    <div class="contact-info__item">
+                        <div class="contact-info__item-icon">✉</div>
+                        <div>
+                            <p class="contact-info__item-label">Email</p>
+                            <p class="contact-info__item-value">
+                                <a href="mailto:{{ company.email }}">{{ company.email }}</a>
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
 
-        <form method="post" action="{% url 'contact:contact' %}" novalidate>
-            {% csrf_token %}
+                    {% if company.phone %}
+                    <div class="contact-info__item">
+                        <div class="contact-info__item-icon">☎</div>
+                        <div>
+                            <p class="contact-info__item-label">Phone</p>
+                            <p class="contact-info__item-value">
+                                <a href="tel:{{ company.phone }}">{{ company.phone }}</a>
+                            </p>
+                        </div>
+                    </div>
+                    {% endif %}
 
-            <div>
-                <label for="{{ form.name.id_for_label }}">Full Name *</label>
-                {{ form.name }}
-                {% if form.name.errors %}
-                    <div style="color: red;">{{ form.name.errors }}</div>
+                    {% if company.address %}
+                    <div class="contact-info__item">
+                        <div class="contact-info__item-icon">⌘</div>
+                        <div>
+                            <p class="contact-info__item-label">Location</p>
+                            <p class="contact-info__item-value">{{ company.address }}</p>
+                        </div>
+                    </div>
+                    {% endif %}
                 {% endif %}
             </div>
 
-            <div>
-                <label for="{{ form.email.id_for_label }}">Email Address *</label>
-                {{ form.email }}
-                {% if form.email.errors %}
-                    <div style="color: red;">{{ form.email.errors }}</div>
+            <!-- Right: Form -->
+            <div class="contact-form reveal reveal--delay-2">
+                <h2 class="contact-form__title">Send us a message</h2>
+
+                {% if form.non_field_errors %}
+                <div style="margin-bottom: var(--s-lg);">
+                    {% for error in form.non_field_errors %}
+                    <p style="color: var(--c-error); font-size: var(--text-sm);">{{ error }}</p>
+                    {% endfor %}
+                </div>
                 {% endif %}
+
+                <form method="post" action="{% url 'contact:contact' %}" novalidate>
+                    {% csrf_token %}
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="{{ form.name.id_for_label }}">Full Name *</label>
+                            {{ form.name }}
+                            {% if form.name.errors %}{{ form.name.errors }}{% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.email.id_for_label }}">Email Address *</label>
+                            {{ form.email }}
+                            {% if form.email.errors %}{{ form.email.errors }}{% endif %}
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="{{ form.phone.id_for_label }}">Phone Number</label>
+                            {{ form.phone }}
+                            {% if form.phone.errors %}{{ form.phone.errors }}{% endif %}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.company.id_for_label }}">Company</label>
+                            {{ form.company }}
+                            {% if form.company.errors %}{{ form.company.errors }}{% endif %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.subject.id_for_label }}">Subject *</label>
+                        {{ form.subject }}
+                        {% if form.subject.errors %}{{ form.subject.errors }}{% endif %}
+                    </div>
+
+                    <div class="form-group">
+                        <label for="{{ form.message.id_for_label }}">Message *</label>
+                        {{ form.message }}
+                        {% if form.message.errors %}{{ form.message.errors }}{% endif %}
+                    </div>
+
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn--primary" style="width: 100%; justify-content: center;">
+                            Send Message <span class="btn__arrow">→</span>
+                        </button>
+                    </div>
+                </form>
             </div>
 
-            <div>
-                <label for="{{ form.phone.id_for_label }}">Phone Number</label>
-                {{ form.phone }}
-                {% if form.phone.errors %}
-                    <div style="color: red;">{{ form.phone.errors }}</div>
-                {% endif %}
-            </div>
+        </div>
 
-            <div>
-                <label for="{{ form.company.id_for_label }}">Company</label>
-                {{ form.company }}
-                {% if form.company.errors %}
-                    <div style="color: red;">{{ form.company.errors }}</div>
-                {% endif %}
-            </div>
-
-            <div>
-                <label for="{{ form.subject.id_for_label }}">Subject *</label>
-                {{ form.subject }}
-                {% if form.subject.errors %}
-                    <div style="color: red;">{{ form.subject.errors }}</div>
-                {% endif %}
-            </div>
-
-            <div>
-                <label for="{{ form.message.id_for_label }}">Message *</label>
-                {{ form.message }}
-                {% if form.message.errors %}
-                    <div style="color: red;">{{ form.message.errors }}</div>
-                {% endif %}
-            </div>
-
-            <button type="submit">Send Message</button>
-        </form>
     </div>
 </section>
 

@@ -1,44 +1,76 @@
 {% extends "base.html" %}
 
-{% block title %}Our Portfolio | Harbe Digital Solutions{% endblock %}
+{% block title %}Our Work — Harbe Digital Solutions{% endblock %}
 
-{% block description %}Discover the work and software solutions developed by Harbe Digital Solutions.{% endblock %}
+{% block description %}Discover the software systems, platforms, and digital products built by Harbe Digital Solutions for real businesses.{% endblock %}
 
 {% block content %}
 
-<section>
-    <h1>Our Portfolio</h1>
-    <p>Discover projects we have built for clients and products we have developed.</p>
-
-    {% if projects %}
-        <ul>
-            {% for project in projects %}
-            <li>
-                {% if project.cover_image %}
-                    <img src="{{ project.cover_image.url }}" alt="{{ project.title }}">
-                {% endif %}
-                <h2>
-                    <a href="{% url 'portfolio:detail' project.pk %}">{{ project.title }}</a>
-                </h2>
-                {% if project.client %}
-                    <p><strong>Client:</strong> {{ project.client }}</p>
-                {% endif %}
-                <p>{{ project.short_description }}</p>
-                <p>
-                    <a href="{% url 'portfolio:detail' project.pk %}">View Project Details</a>
-                </p>
-            </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No projects are currently listed in the portfolio.</p>
-    {% endif %}
+<!-- ═══════════ PAGE HEADER ═══════════ -->
+<section class="page-header">
+    <div class="container">
+        <p class="label reveal">Portfolio</p>
+        <h1 class="page-header__title reveal reveal--delay-1">Our Work</h1>
+        <p class="page-header__subtitle reveal reveal--delay-2">
+            Real products built for real businesses. Each project represents a problem solved.
+        </p>
+    </div>
 </section>
 
-<section>
-    <h2>Have a project in mind?</h2>
-    <p>Let's build something great together.</p>
-    <a href="{% url 'contact:contact' %}">Start Your Project</a>
+<!-- ═══════════ PORTFOLIO GRID ═══════════ -->
+<section class="section" style="padding-top: 0;">
+    <div class="container">
+
+        {% if projects %}
+        <div class="portfolio-grid">
+            {% for project in projects %}
+            <div class="portfolio-item reveal">
+                <div class="portfolio-item__image">
+                    {% if project.cover_image %}
+                        <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" loading="lazy">
+                    {% else %}
+                        <div class="project-card__visual-placeholder">{{ project.title }}</div>
+                    {% endif %}
+                </div>
+                <div class="portfolio-item__content">
+                    {% if project.client %}
+                    <p class="portfolio-item__client">{{ project.client }}</p>
+                    {% endif %}
+                    <h2 class="portfolio-item__title">{{ project.title }}</h2>
+                    <p class="portfolio-item__desc">{{ project.short_description }}</p>
+                    <a href="{% url 'portfolio:detail' project.pk %}" class="btn btn--outline">
+                        View Project <span class="btn__arrow">→</span>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="reveal" style="text-align: center; padding: var(--s-4xl) 0;">
+            <p style="color: var(--c-text-secondary); font-size: var(--text-lg);">
+                Our portfolio is being updated with our latest projects. Check back soon.
+            </p>
+        </div>
+        {% endif %}
+
+    </div>
+</section>
+
+
+<!-- ═══════════ CTA ═══════════ -->
+<section class="section cta-section">
+    <div class="cta-section__glow"></div>
+    <div class="container container--narrow">
+        <div class="reveal">
+            <h2 class="cta-section__title">Have a project in mind?</h2>
+            <p class="cta-section__subtitle">Let's build something great together.</p>
+            <div class="cta-section__actions">
+                <a href="{% url 'contact:contact' %}" class="btn btn--primary">
+                    Start Your Project <span class="btn__arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
 
 {% endblock %}

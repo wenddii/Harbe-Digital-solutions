@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,27 +9,33 @@
 
     <meta
         name="description"
-        content="{% block description %}Harbe Digital Solutions builds modern software solutions for businesses.{% endblock %}"
+        content="{% block description %}Harbe Digital Solutions builds modern software systems for businesses ready to grow.{% endblock %}"
     >
 
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% block extra_head %}{% endblock %}
 </head>
 
 <body>
 
     {% include "includes/navbar.html" %}
 
-    <main>
-        {% if messages %}
-        <div class="messages">
-            {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-            {% endfor %}
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
         </div>
-        {% endif %}
+        {% endfor %}
+    </div>
+    {% endif %}
 
+    <main>
         {% block content %}
         {% endblock %}
     </main>
@@ -38,6 +43,7 @@
     {% include "includes/footer.html" %}
 
     <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
 
 </body>
 </html>

@@ -1,75 +1,92 @@
 {% extends "base.html" %}
 
-{% block title %}{{ project.title }} | Harbe Digital Solutions{% endblock %}
+{% block title %}{{ project.title }} — Harbe Digital Solutions{% endblock %}
 
 {% block description %}{{ project.short_description }}{% endblock %}
 
 {% block content %}
 
-<article>
-    <p><a href="{% url 'portfolio:list' %}">&larr; Back to Portfolio</a></p>
+<section class="project-detail">
+    <div class="container container--narrow">
 
-    {% if project.cover_image %}
-        <div>
-            <img src="{{ project.cover_image.url }}" alt="{{ project.title }} Cover Image">
+        <a href="{% url 'portfolio:list' %}" class="detail-back reveal">
+            ← Back to Portfolio
+        </a>
+
+        {% if project.cover_image %}
+        <div class="project-detail__cover reveal">
+            <img src="{{ project.cover_image.url }}" alt="{{ project.title }}" loading="eager">
         </div>
-    {% endif %}
+        {% endif %}
 
-    <h1>{{ project.title }}</h1>
+        <p class="label reveal">{% if project.client %}{{ project.client }}{% else %}Project{% endif %}</p>
+        <h1 class="detail-title reveal reveal--delay-1">{{ project.title }}</h1>
+        <p class="detail-lead reveal reveal--delay-2">{{ project.short_description }}</p>
 
-    {% if project.client %}
-        <p><strong>Client:</strong> {{ project.client }}</p>
-    {% endif %}
-
-    <p>
-        <strong>Status:</strong>
-        {% if project.is_completed %}Completed{% else %}In Progress{% endif %}
-    </p>
-
-    <p><strong>{{ project.short_description }}</strong></p>
-
-    <div>
-        <h2>Project Overview</h2>
-        {{ project.description|linebreaks }}
-    </div>
-
-    {% if project.project_url or project.github_url %}
-        <div>
-            <h2>Links</h2>
-            <ul>
-                {% if project.project_url %}
-                    <li><a href="{{ project.project_url }}" target="_blank" rel="noopener">Live Project URL</a></li>
-                {% endif %}
-                {% if project.github_url %}
-                    <li><a href="{{ project.github_url }}" target="_blank" rel="noopener">Source Code (GitHub)</a></li>
-                {% endif %}
-            </ul>
+        <!-- Meta -->
+        <div class="project-detail__meta reveal reveal--delay-2">
+            {% if project.client %}
+            <div class="project-detail__meta-item">
+                <p class="project-detail__meta-label">Client</p>
+                <p class="project-detail__meta-value">{{ project.client }}</p>
+            </div>
+            {% endif %}
+            <div class="project-detail__meta-item">
+                <p class="project-detail__meta-label">Status</p>
+                <p class="project-detail__meta-value">{% if project.is_completed %}Completed{% else %}In Progress{% endif %}</p>
+            </div>
         </div>
-    {% endif %}
 
-    <!-- Project Gallery -->
-    {% if project.images.all %}
-        <section>
-            <h2>Project Gallery</h2>
-            <div>
+        <!-- Body -->
+        <div class="project-detail__body reveal">
+            {{ project.description|linebreaks }}
+        </div>
+
+        <!-- Links -->
+        {% if project.project_url or project.github_url %}
+        <div class="project-detail__links reveal">
+            {% if project.project_url %}
+            <a href="{{ project.project_url }}" target="_blank" rel="noopener" class="btn btn--primary">
+                Live Project <span class="btn__arrow">→</span>
+            </a>
+            {% endif %}
+            {% if project.github_url %}
+            <a href="{{ project.github_url }}" target="_blank" rel="noopener" class="btn btn--outline">
+                Source Code
+            </a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <!-- Gallery -->
+        {% if project.images.all %}
+        <div class="project-gallery reveal">
+            <h2 class="project-gallery__title">Project Gallery</h2>
+            <div class="project-gallery__grid">
                 {% for img in project.images.all %}
-                    <div>
-                        {% if img.image %}
-                            <img src="{{ img.image.url }}" alt="{{ img.caption|default:project.title }}">
-                        {% endif %}
+                    {% if img.image %}
+                    <div class="project-gallery__item">
+                        <img src="{{ img.image.url }}" alt="{{ img.caption|default:project.title }}" loading="lazy">
                         {% if img.caption %}
-                            <p><small>{{ img.caption }}</small></p>
+                        <p class="project-gallery__caption">{{ img.caption }}</p>
                         {% endif %}
                     </div>
+                    {% endif %}
                 {% endfor %}
             </div>
-        </section>
-    {% endif %}
+        </div>
+        {% endif %}
 
-    <div>
-        <h2>Ready to build a similar solution?</h2>
-        <a href="{% url 'contact:contact' %}">Contact Us Today</a>
+        <!-- CTA -->
+        <div class="detail-cta reveal">
+            <h2 class="detail-cta__title">Ready to build a similar solution?</h2>
+            <p class="detail-cta__text">Let's discuss your project requirements.</p>
+            <a href="{% url 'contact:contact' %}" class="btn btn--primary">
+                Contact Us <span class="btn__arrow">→</span>
+            </a>
+        </div>
+
     </div>
-</article>
+</section>
 
 {% endblock %}
