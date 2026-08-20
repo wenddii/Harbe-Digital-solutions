@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Our Portfolio | Harbe Digital Solutions{% endblock %}
+
+{% block description %}Discover the work and software solutions developed by Harbe Digital Solutions.{% endblock %}
+
+{% block content %}
+
+<section>
+    <h1>Our Portfolio</h1>
+    <p>Discover projects we have built for clients and products we have developed.</p>
+
+    {% if projects %}
+        <ul>
+            {% for project in projects %}
+            <li>
+                {% if project.cover_image %}
+                    <img src="{{ project.cover_image.url }}" alt="{{ project.title }}">
+                {% endif %}
+                <h2>
+                    <a href="{% url 'portfolio:detail' project.pk %}">{{ project.title }}</a>
+                </h2>
+                {% if project.client %}
+                    <p><strong>Client:</strong> {{ project.client }}</p>
+                {% endif %}
+                <p>{{ project.short_description }}</p>
+                <p>
+                    <a href="{% url 'portfolio:detail' project.pk %}">View Project Details</a>
+                </p>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No projects are currently listed in the portfolio.</p>
+    {% endif %}
+</section>
+
+<section>
+    <h2>Have a project in mind?</h2>
+    <p>Let's build something great together.</p>
+    <a href="{% url 'contact:contact' %}">Start Your Project</a>
+</section>
+
+{% endblock %}

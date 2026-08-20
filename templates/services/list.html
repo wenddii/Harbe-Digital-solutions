@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Our Services | Harbe Digital Solutions{% endblock %}
+
+{% block description %}Explore the comprehensive range of software and digital services offered by Harbe Digital Solutions.{% endblock %}
+
+{% block content %}
+
+<section>
+    <h1>Our Services</h1>
+    <p>Explore the solutions we provide to help your business succeed.</p>
+
+    {% if services %}
+        <ul>
+            {% for service in services %}
+            <li>
+                {% if service.image %}
+                    <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                {% endif %}
+                <h2>
+                    <a href="{% url 'services:detail' service.pk %}">{{ service.name }}</a>
+                </h2>
+                {% if service.icon %}
+                    <p><span>Icon: {{ service.icon }}</span></p>
+                {% endif %}
+                <p>{{ service.short_description }}</p>
+                <a href="{% url 'services:detail' service.pk %}">View Details</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No services are currently listed. Please check back soon.</p>
+    {% endif %}
+</section>
+
+<section>
+    <h2>Need a custom solution?</h2>
+    <p>We are ready to discuss your specific requirements.</p>
+    <a href="{% url 'contact:contact' %}">Contact Us</a>
+</section>
+
+{% endblock %}

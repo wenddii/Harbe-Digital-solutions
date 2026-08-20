@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}
+About Us | {% if company %}{{ company.name }}{% else %}Harbe Digital Solutions{% endif %}
+{% endblock %}
+
+{% block description %}
+{% if company %}{{ company.about|truncatewords:30 }}{% else %}Learn more about Harbe Digital Solutions, our mission, and our team.{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<!-- About Company Section -->
+<section>
+    <div>
+        {% if company and company.logo %}
+            <img src="{{ company.logo.url }}" alt="{{ company.name }} Logo">
+        {% endif %}
+        <h1>About {{ company.name|default:"Harbe Digital Solutions" }}</h1>
+        {% if company and company.tagline %}
+            <p><strong>{{ company.tagline }}</strong></p>
+        {% endif %}
+        <p>
+            {{ company.about|default:"Harbe Digital Solutions is dedicated to delivering robust software engineering and digital solutions tailored to client needs."|linebreaks }}
+        </p>
+
+        {% if company %}
+        <div>
+            <h2>Company Details</h2>
+            <ul>
+                {% if company.email %}
+                    <li><strong>Email:</strong> <a href="mailto:{{ company.email }}">{{ company.email }}</a></li>
+                {% endif %}
+                {% if company.phone %}
+                    <li><strong>Phone:</strong> <a href="tel:{{ company.phone }}">{{ company.phone }}</a></li>
+                {% endif %}
+                {% if company.address %}
+                    <li><strong>Address:</strong> {{ company.address }}</li>
+                {% endif %}
+            </ul>
+
+            {% if company.facebook or company.linkedin or company.github %}
+            <div>
+                <h3>Connect With Us</h3>
+                <ul>
+                    {% if company.facebook %}
+                        <li><a href="{{ company.facebook }}" target="_blank" rel="noopener">Facebook</a></li>
+                    {% endif %}
+                    {% if company.linkedin %}
+                        <li><a href="{{ company.linkedin }}" target="_blank" rel="noopener">LinkedIn</a></li>
+                    {% endif %}
+                    {% if company.github %}
+                        <li><a href="{{ company.github }}" target="_blank" rel="noopener">GitHub</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Team Members Section -->
+<section>
+    <h2>Our Team</h2>
+    <p>Meet the skilled professionals behind our projects.</p>
+    {% if team_members %}
+        <ul>
+            {% for member in team_members %}
+            <li>
+                {% if member.photo %}
+                    <img src="{{ member.photo.url }}" alt="{{ member.full_name }}">
+                {% endif %}
+                <h3>{{ member.full_name }}</h3>
+                <p><strong>{{ member.position }}</strong></p>
+                <p>{{ member.bio }}</p>
+                {% if member.email %}
+                    <a href="mailto:{{ member.email }}">Email</a>
+                {% endif %}
+                {% if member.linkedin %}
+                    <a href="{{ member.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+                {% endif %}
+                {% if member.github %}
+                    <a href="{{ member.github }}" target="_blank" rel="noopener">GitHub</a>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No team members listed yet.</p>
+    {% endif %}
+</section>
+
+<!-- Contact Call to Action -->
+<section>
+    <h2>Have a project in mind?</h2>
+    <p>Get in touch with us and let's make it happen.</p>
+    <a href="{% url 'contact:contact' %}">Contact Us</a>
+</section>
+
+{% endblock %}

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} | Harbe Digital Solutions{% endblock %}
+
+{% block description %}{{ project.short_description }}{% endblock %}
+
+{% block content %}
+
+<article>
+    <p><a href="{% url 'portfolio:list' %}">&larr; Back to Portfolio</a></p>
+
+    {% if project.cover_image %}
+        <div>
+            <img src="{{ project.cover_image.url }}" alt="{{ project.title }} Cover Image">
+        </div>
+    {% endif %}
+
+    <h1>{{ project.title }}</h1>
+
+    {% if project.client %}
+        <p><strong>Client:</strong> {{ project.client }}</p>
+    {% endif %}
+
+    <p>
+        <strong>Status:</strong>
+        {% if project.is_completed %}Completed{% else %}In Progress{% endif %}
+    </p>
+
+    <p><strong>{{ project.short_description }}</strong></p>
+
+    <div>
+        <h2>Project Overview</h2>
+        {{ project.description|linebreaks }}
+    </div>
+
+    {% if project.project_url or project.github_url %}
+        <div>
+            <h2>Links</h2>
+            <ul>
+                {% if project.project_url %}
+                    <li><a href="{{ project.project_url }}" target="_blank" rel="noopener">Live Project URL</a></li>
+                {% endif %}
+                {% if project.github_url %}
+                    <li><a href="{{ project.github_url }}" target="_blank" rel="noopener">Source Code (GitHub)</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <!-- Project Gallery -->
+    {% if project.images.all %}
+        <section>
+            <h2>Project Gallery</h2>
+            <div>
+                {% for img in project.images.all %}
+                    <div>
+                        {% if img.image %}
+                            <img src="{{ img.image.url }}" alt="{{ img.caption|default:project.title }}">
+                        {% endif %}
+                        {% if img.caption %}
+                            <p><small>{{ img.caption }}</small></p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+
+    <div>
+        <h2>Ready to build a similar solution?</h2>
+        <a href="{% url 'contact:contact' %}">Contact Us Today</a>
+    </div>
+</article>
+
+{% endblock %}

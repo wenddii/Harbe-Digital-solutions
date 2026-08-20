@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us | Harbe Digital Solutions{% endblock %}
+
+{% block description %}Get in touch with Harbe Digital Solutions to discuss your next software project or request a quote.{% endblock %}
+
+{% block content %}
+
+<section>
+    <h1>Contact Us</h1>
+    <p>Have a question, feedback, or a project to discuss? Send us a message and we'll get back to you promptly.</p>
+
+    <!-- Direct Company Info -->
+    {% if company %}
+    <div>
+        <h2>Get in Touch Directly</h2>
+        <ul>
+            {% if company.email %}
+                <li><strong>Email:</strong> <a href="mailto:{{ company.email }}">{{ company.email }}</a></li>
+            {% endif %}
+            {% if company.phone %}
+                <li><strong>Phone:</strong> <a href="tel:{{ company.phone }}">{{ company.phone }}</a></li>
+            {% endif %}
+            {% if company.address %}
+                <li><strong>Address:</strong> {{ company.address }}</li>
+            {% endif %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Contact Form -->
+    <div>
+        <h2>Send Us a Message</h2>
+
+        {% if form.non_field_errors %}
+            <div>
+                {% for error in form.non_field_errors %}
+                    <p style="color: red;">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'contact:contact' %}" novalidate>
+            {% csrf_token %}
+
+            <div>
+                <label for="{{ form.name.id_for_label }}">Full Name *</label>
+                {{ form.name }}
+                {% if form.name.errors %}
+                    <div style="color: red;">{{ form.name.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{ form.email.id_for_label }}">Email Address *</label>
+                {{ form.email }}
+                {% if form.email.errors %}
+                    <div style="color: red;">{{ form.email.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{ form.phone.id_for_label }}">Phone Number</label>
+                {{ form.phone }}
+                {% if form.phone.errors %}
+                    <div style="color: red;">{{ form.phone.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{ form.company.id_for_label }}">Company</label>
+                {{ form.company }}
+                {% if form.company.errors %}
+                    <div style="color: red;">{{ form.company.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{ form.subject.id_for_label }}">Subject *</label>
+                {{ form.subject }}
+                {% if form.subject.errors %}
+                    <div style="color: red;">{{ form.subject.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{ form.message.id_for_label }}">Message *</label>
+                {{ form.message }}
+                {% if form.message.errors %}
+                    <div style="color: red;">{{ form.message.errors }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

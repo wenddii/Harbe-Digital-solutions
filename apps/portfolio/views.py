@@ -1,0 +1,23 @@
+from django.shortcuts import get_object_or_404, render
+
+from .models import Project
+
+
+def project_list(request):
+    projects = Project.objects.all()
+
+    return render(
+        request,
+        "portfolio/list.html",
+        {"projects": projects}
+    )
+
+
+def project_detail(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+
+    return render(
+        request,
+        "portfolio/detail.html",
+        {"project": project}
+    )

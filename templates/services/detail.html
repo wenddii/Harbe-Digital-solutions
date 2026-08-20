@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}{{ service.name }} | Harbe Digital Solutions{% endblock %}
+
+{% block description %}{{ service.short_description }}{% endblock %}
+
+{% block content %}
+
+<article>
+    <p><a href="{% url 'services:list' %}">&larr; Back to All Services</a></p>
+
+    {% if service.image %}
+        <div>
+            <img src="{{ service.image.url }}" alt="{{ service.name }}">
+        </div>
+    {% endif %}
+
+    <h1>{{ service.name }}</h1>
+
+    {% if service.icon %}
+        <p><span>Icon: {{ service.icon }}</span></p>
+    {% endif %}
+
+    <p><strong>{{ service.short_description }}</strong></p>
+
+    <div>
+        {{ service.description|linebreaks }}
+    </div>
+
+    <div>
+        <h2>Interested in this service?</h2>
+        <p>Contact our team to get started on your project.</p>
+        <a href="{% url 'contact:contact' %}">Get in Touch</a>
+    </div>
+</article>
+
+{% endblock %}
