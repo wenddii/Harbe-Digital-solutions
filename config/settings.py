@@ -56,6 +56,9 @@ INSTALLED_APPS = [
     "apps.services",
     "apps.portfolio",
     "apps.contact",
+
+    "cloudinary",
+    "cloudinary_storage", 
 ]
 
 
