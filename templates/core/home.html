@@ -1,61 +1,66 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %}Harbe Digital Solutions — We Build Digital Systems for Businesses{% endblock %}
+{% block title %}Harbe Digital Solutions — Digital Systems Behind Modern Businesses{% endblock %}
 
-{% block description %}Harbe Digital Solutions designs and builds modern software systems, business platforms, mobile applications, and AI-powered solutions for businesses ready to grow.{% endblock %}
+{% block description %}Harbe Digital Solutions builds practical software, business systems, and ERP solutions rooted in Ethiopian craftsmanship and designed for modern businesses.{% endblock %}
 
 {% block content %}
 
-<!-- ═══════════ HERO ═══════════ -->
+<!-- ═══════════ HERO SECTION ═══════════ -->
 <section class="hero">
-    <div class="hero__glow"></div>
-
     <div class="container container--wide">
         <div class="hero__inner">
 
             <div class="hero__content">
-                <div class="hero__eyebrow">
-                    <span class="hero__eyebrow-dot"></span>
-                    Software Engineering &amp; Digital Solutions
+                <div class="hero__eyebrow reveal">
+                    <span class="hero__eyebrow-symbol">❖</span>
+                    Rooted in Ethiopian Heritage
                 </div>
 
-                <h1 class="hero__title">
-                    We build digital<br>
-                    systems for businesses<br>
-                    <span class="text-gradient">ready to grow.</span>
+                <h1 class="hero__title reveal reveal--delay-1">
+                    Building the Digital Systems Behind Modern Businesses.
                 </h1>
 
-                <p class="hero__subtitle">
-                    From your first digital presence to the systems running your entire operation — we design, build, and ship real software.
+                <p class="hero__subtitle reveal reveal--delay-2">
+                    Harbe Digital Solutions builds practical software, business systems, and ERP solutions designed around real business problems.
                 </p>
 
-                <div class="hero__actions">
+                <div class="hero__actions reveal reveal--delay-3">
                     <a href="{% url 'contact:contact' %}" class="btn btn--primary">
-                        Start a Project
+                        Work With Us
                         <span class="btn__arrow">→</span>
                     </a>
-                    <a href="{% url 'portfolio:list' %}" class="btn btn--outline">
-                        View Our Work
+                    <a href="{% url 'services:list' %}" class="btn btn--outline">
+                        Explore Our Services
                     </a>
                 </div>
             </div>
 
-            <div class="hero__visual">
-                <div class="hero__image-wrapper">
-                    <img src="{% static 'images/hero-team.jpg' %}" alt="Harbe Digital Solutions team collaborating on software" loading="eager">
-                </div>
+            <div class="hero__visual reveal reveal--delay-2">
+                <div class="hero__frame">
+                    <div class="hero__frame-header">
+                        <div class="hero__frame-title">
+                            <span class="hero__status-dot"></span>
+                            HARBE SYSTEM ENGINE
+                        </div>
+                        <span class="mono" style="font-size: 0.75rem; color: var(--c-accent);">// ARCHITECTURAL ENGINEERING</span>
+                    </div>
 
-                <!-- Floating elements -->
-                <div class="hero__float hero__float--top">
-                    <span class="hero__float-status"></span>
-                    Systems Online
-                </div>
-                <div class="hero__float hero__float--left">
-                    deploy → production
-                </div>
-                <div class="hero__float hero__float--bottom">
-                    // building solutions
+                    <div class="hero__image-container">
+                        <img src="{% static 'images/hero-team.jpg' %}" alt="Harbe Digital Solutions software engineering team" loading="eager">
+                    </div>
+
+                    <div class="hero__metrics-grid">
+                        <div class="hero__metric-item">
+                            <p class="hero__metric-label">Engineering Focus</p>
+                            <p class="hero__metric-value">Custom ERP &amp; Software</p>
+                        </div>
+                        <div class="hero__metric-item">
+                            <p class="hero__metric-label">Philosophy</p>
+                            <p class="hero__metric-value">Built to Endure</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -64,21 +69,57 @@
 </section>
 
 
-<!-- ═══════════ SERVICES ═══════════ -->
+<!-- ═══════════ BRAND STORY / WHY HARBE ═══════════ -->
+<section class="section heritage-section">
+    <div class="container">
+        <div class="heritage-grid">
+
+            <div class="reveal">
+                <p class="label">The Harbe Philosophy</p>
+                <h2 class="heritage-lead">Why Harbe?</h2>
+                <p class="heritage-text">
+                    Harbe draws inspiration from Ethiopia's Zagwe heritage and the legacy associated with the name of King Kedus Harbe, brother of the renowned King Lalibela.
+                </p>
+                <p class="heritage-text">
+                    For us, the name represents something larger: building with purpose, solving real problems, and creating things that endure. We are bringing that mindset into modern technology.
+                </p>
+            </div>
+
+            <div class="heritage-pillars reveal reveal--delay-2">
+                <div class="pillar-card">
+                    <h3 class="pillar-card__title">01. Purposeful Engineering</h3>
+                    <p class="pillar-card__desc">We build practical, resilient digital infrastructure tailored to the operational realities of businesses.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3 class="pillar-card__title">02. Enduring Craftsmanship</h3>
+                    <p class="pillar-card__desc">Like the architectural wonders of our heritage, we prioritize structure, durability, and lasting value over fleeting trends.</p>
+                </div>
+                <div class="pillar-card">
+                    <h3 class="pillar-card__title">03. Local Context, World-Class Standards</h3>
+                    <p class="pillar-card__desc">Deeply understanding Ethiopian business workflows while implementing global software best practices.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ═══════════ SERVICES SECTION ═══════════ -->
 <section class="section services-section">
     <div class="container">
 
         <div class="section__header reveal">
-            <p class="label">What We Do</p>
-            <h2 class="section__title">From your first website to the<br>systems running your business.</h2>
-            <p class="section__subtitle">Technology solutions designed around real business problems.</p>
+            <p class="label">What We Build</p>
+            <h2 class="section__title">Digital systems designed for real business operations.</h2>
+            <p class="section__subtitle">We provide end-to-end software engineering and system architecture designed around your core challenges.</p>
         </div>
 
         {% if featured_services %}
-        <div class="services-grid reveal reveal--delay-2">
+        <div class="services-grid reveal reveal--delay-1">
             {% for service in featured_services %}
             <a href="{% url 'services:detail' service.pk %}" class="service-card">
-                <div class="service-card__index mono">0{{ forloop.counter }}</div>
+                <div class="service-card__index">0{{ forloop.counter }}</div>
                 {% if service.icon %}
                 <div class="service-card__icon">
                     <i class="{{ service.icon }}"></i>
@@ -91,42 +132,54 @@
             {% endfor %}
         </div>
         {% else %}
-        <div class="services-grid reveal reveal--delay-2">
+        <div class="services-grid reveal reveal--delay-1">
             <div class="service-card">
-                <div class="service-card__index mono">01</div>
-                <h3 class="service-card__title">Web Development</h3>
-                <p class="service-card__desc">High-performance websites and web applications that establish your digital presence.</p>
+                <div class="service-card__index">01</div>
+                <div class="service-card__icon">⌘</div>
+                <h3 class="service-card__title">Custom Software Development</h3>
+                <p class="service-card__desc">Tailored platforms and business applications engineered specifically for your company's operational requirements.</p>
+                <span class="service-card__arrow">Explore solution →</span>
             </div>
             <div class="service-card">
-                <div class="service-card__index mono">02</div>
-                <h3 class="service-card__title">Business Systems</h3>
-                <p class="service-card__desc">Custom management platforms that streamline your operations and improve efficiency.</p>
+                <div class="service-card__index">02</div>
+                <div class="service-card__icon">⬡</div>
+                <h3 class="service-card__title">ERP &amp; Business Systems</h3>
+                <p class="service-card__desc">Integrated management platforms that streamline inventory, accounting, point-of-sale, and multi-branch operations.</p>
+                <span class="service-card__arrow">Explore solution →</span>
             </div>
             <div class="service-card">
-                <div class="service-card__index mono">03</div>
-                <h3 class="service-card__title">Custom Software</h3>
-                <p class="service-card__desc">Tailored software solutions engineered specifically for your business requirements.</p>
+                <div class="service-card__index">03</div>
+                <div class="service-card__icon">◎</div>
+                <h3 class="service-card__title">Web Applications</h3>
+                <p class="service-card__desc">High-performance web portals, customer-facing platforms, and digital storefronts built for scale.</p>
+                <span class="service-card__arrow">Explore solution →</span>
             </div>
             <div class="service-card">
-                <div class="service-card__index mono">04</div>
-                <h3 class="service-card__title">Mobile Apps</h3>
-                <p class="service-card__desc">Native and cross-platform mobile applications that reach your customers anywhere.</p>
+                <div class="service-card__index">04</div>
+                <div class="service-card__icon">◈</div>
+                <h3 class="service-card__title">Mobile Applications</h3>
+                <p class="service-card__desc">Intuitive, reliable mobile apps for iOS and Android that connect your workforce and engage your customers anywhere.</p>
+                <span class="service-card__arrow">Explore solution →</span>
             </div>
             <div class="service-card">
-                <div class="service-card__index mono">05</div>
+                <div class="service-card__index">05</div>
+                <div class="service-card__icon">❖</div>
                 <h3 class="service-card__title">AI &amp; Automation</h3>
-                <p class="service-card__desc">Intelligent automation and AI-powered tools that reduce manual work and scale operations.</p>
+                <p class="service-card__desc">Intelligent workflow automations, custom AI assistants, and decision-support tools that reduce manual effort.</p>
+                <span class="service-card__arrow">Explore solution →</span>
             </div>
             <div class="service-card">
-                <div class="service-card__index mono">06</div>
-                <h3 class="service-card__title">Technical Support</h3>
-                <p class="service-card__desc">Ongoing maintenance, monitoring, and support to keep your systems running at peak performance.</p>
+                <div class="service-card__index">06</div>
+                <div class="service-card__icon">⟡</div>
+                <h3 class="service-card__title">Technical Advisory &amp; Support</h3>
+                <p class="service-card__desc">Dedicated technical consulting, architecture audits, and ongoing system support to guarantee uptime and security.</p>
+                <span class="service-card__arrow">Explore solution →</span>
             </div>
         </div>
         {% endif %}
 
-        <div style="text-align: center; margin-top: var(--s-2xl);" class="reveal reveal--delay-3">
-            <a href="{% url 'services:list' %}" class="btn btn--ghost">
+        <div style="text-align: center; margin-top: var(--s-2xl);" class="reveal reveal--delay-2">
+            <a href="{% url 'services:list' %}" class="btn btn--outline">
                 View All Services <span class="btn__arrow">→</span>
             </a>
         </div>
@@ -135,14 +188,14 @@
 </section>
 
 
-<!-- ═══════════ WORK / PORTFOLIO ═══════════ -->
+<!-- ═══════════ SELECTED WORK / PORTFOLIO ═══════════ -->
 <section class="section work-section">
     <div class="container">
 
         <div class="section__header reveal">
-            <p class="label">Selected Work</p>
-            <h2 class="section__title">We don't just design pages.<br>We build systems.</h2>
-            <p class="section__subtitle">Real products built for real businesses.</p>
+            <p class="label">Selected Projects</p>
+            <h2 class="section__title">Software built for real business impact.</h2>
+            <p class="section__subtitle">Explore production systems and platforms developed for our enterprise and business clients.</p>
         </div>
 
         <div class="project-showcase">
@@ -157,15 +210,11 @@
                         {% endif %}
                     </div>
                     <div class="project-card__content">
-                        {% if project.client %}
-                        <p class="project-card__label">{{ project.client }}</p>
-                        {% else %}
-                        <p class="project-card__label">Project</p>
-                        {% endif %}
+                        <p class="project-card__label">{% if project.client %}{{ project.client }}{% else %}Enterprise Solution{% endif %}</p>
                         <h3 class="project-card__title">{{ project.title }}</h3>
                         <p class="project-card__desc">{{ project.short_description }}</p>
-                        <a href="{% url 'portfolio:detail' project.pk %}" class="btn btn--outline">
-                            View Project <span class="btn__arrow">→</span>
+                        <a href="{% url 'portfolio:detail' project.pk %}" class="btn btn--outline" style="align-self: flex-start;">
+                            View Case Study <span class="btn__arrow">→</span>
                         </a>
                     </div>
                 </div>
@@ -173,14 +222,14 @@
             {% else %}
                 <div class="project-card reveal">
                     <div class="project-card__visual">
-                        <div class="project-card__visual-placeholder">Coming Soon</div>
+                        <div class="project-card__visual-placeholder">Systems in Deployment</div>
                     </div>
                     <div class="project-card__content">
-                        <p class="project-card__label">Portfolio</p>
-                        <h3 class="project-card__title">Projects in Development</h3>
-                        <p class="project-card__desc">We are currently building exciting projects. Check back soon to see our latest work and case studies.</p>
-                        <a href="{% url 'contact:contact' %}" class="btn btn--outline">
-                            Discuss Your Project <span class="btn__arrow">→</span>
+                        <p class="project-card__label">Enterprise ERP</p>
+                        <h3 class="project-card__title">Retail &amp; Inventory Management ERP</h3>
+                        <p class="project-card__desc">A comprehensive business management platform integrating multi-branch point of sale, stock tracking, and supplier operations.</p>
+                        <a href="{% url 'contact:contact' %}" class="btn btn--outline" style="align-self: flex-start;">
+                            Request a Demo <span class="btn__arrow">→</span>
                         </a>
                     </div>
                 </div>
@@ -188,8 +237,8 @@
         </div>
 
         <div style="text-align: center; margin-top: var(--s-3xl);" class="reveal">
-            <a href="{% url 'portfolio:list' %}" class="btn btn--ghost">
-                View All Projects <span class="btn__arrow">→</span>
+            <a href="{% url 'portfolio:list' %}" class="btn btn--outline">
+                View Full Portfolio <span class="btn__arrow">→</span>
             </a>
         </div>
 
@@ -197,36 +246,36 @@
 </section>
 
 
-<!-- ═══════════ PROCESS ═══════════ -->
+<!-- ═══════════ PROCESS SECTION ═══════════ -->
 <section class="section process-section">
     <div class="container">
 
         <div class="section__header reveal">
-            <p class="label">How We Work</p>
-            <h2 class="section__title">From idea to working product.</h2>
-            <p class="section__subtitle">A clear, structured approach to every project.</p>
+            <p class="label">Our Approach</p>
+            <h2 class="section__title">How we engineer systems.</h2>
+            <p class="section__subtitle">A structured, transparent methodology from problem definition to live deployment.</p>
         </div>
 
         <div class="process-grid">
             <div class="process-step reveal reveal--delay-1">
                 <div class="process-step__number">01</div>
                 <h3 class="process-step__title">Understand</h3>
-                <p class="process-step__desc">We learn how your business works and where technology can improve it.</p>
+                <p class="process-step__desc">We dissect your operational workflows, identify bottlenecks, and define precise technical requirements.</p>
             </div>
             <div class="process-step reveal reveal--delay-2">
                 <div class="process-step__number">02</div>
                 <h3 class="process-step__title">Design</h3>
-                <p class="process-step__desc">We turn the problem into a clear, practical digital solution.</p>
+                <p class="process-step__desc">We engineer intuitive user interfaces and a resilient data architecture built to withstand scaling.</p>
             </div>
             <div class="process-step reveal reveal--delay-3">
                 <div class="process-step__number">03</div>
                 <h3 class="process-step__title">Build</h3>
-                <p class="process-step__desc">We develop, test, and refine the system until it works exactly right.</p>
+                <p class="process-step__desc">We develop using clean, tested, and secure codebases with continuous milestone demonstrations.</p>
             </div>
             <div class="process-step reveal reveal--delay-4">
                 <div class="process-step__number">04</div>
-                <h3 class="process-step__title">Launch</h3>
-                <p class="process-step__desc">We deploy your product and provide continued support and improvement.</p>
+                <h3 class="process-step__title">Deploy &amp; Support</h3>
+                <p class="process-step__desc">We deploy to stable environments, train your personnel, and provide ongoing performance monitoring.</p>
             </div>
         </div>
 
@@ -234,16 +283,63 @@
 </section>
 
 
-<!-- ═══════════ TEAM ═══════════ -->
-<section class="section team-section">
+<!-- ═══════════ WHY HARBE / TRUST ═══════════ -->
+<section class="section">
+    <div class="container">
+
+        <div class="section__header reveal">
+            <p class="label">Why Harbe</p>
+            <h2 class="section__title">Built different. On purpose.</h2>
+            <p class="section__subtitle">Principles that guide our engineering and client partnerships.</p>
+        </div>
+
+        <div class="why-grid">
+            <div class="why-card reveal reveal--delay-1">
+                <div class="why-card__icon">❖</div>
+                <h3 class="why-card__title">Built Around Your Business</h3>
+                <p class="why-card__desc">No cookie-cutter templates. Every solution is custom-engineered around how your business actually operates.</p>
+            </div>
+            <div class="why-card reveal reveal--delay-2">
+                <div class="why-card__icon">◈</div>
+                <h3 class="why-card__title">Modern Proven Architecture</h3>
+                <p class="why-card__desc">We utilize battle-tested technologies and secure architectures that scale smoothly with your business growth.</p>
+            </div>
+            <div class="why-card reveal reveal--delay-3">
+                <div class="why-card__icon">⬡</div>
+                <h3 class="why-card__title">Practical Problem Solving</h3>
+                <p class="why-card__desc">We avoid unnecessary complexity. Our focus is delivering reliable software that provides immediate operational efficiency.</p>
+            </div>
+            <div class="why-card reveal reveal--delay-1">
+                <div class="why-card__icon">⟡</div>
+                <h3 class="why-card__title">Long-Term Partnership</h3>
+                <p class="why-card__desc">We stand behind our work with dedicated maintenance, system optimization, and technical support.</p>
+            </div>
+            <div class="why-card reveal reveal--delay-2">
+                <div class="why-card__icon">◎</div>
+                <h3 class="why-card__title">Direct Technical Access</h3>
+                <p class="why-card__desc">You collaborate directly with the engineers building your systems for rapid, transparent communication.</p>
+            </div>
+            <div class="why-card reveal reveal--delay-3">
+                <div class="why-card__icon">⌘</div>
+                <h3 class="why-card__title">Measurable Business ROI</h3>
+                <p class="why-card__desc">We evaluate our success by the tangible efficiency gains, revenue growth, and stability our software delivers.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ═══════════ TEAM SECTION ═══════════ -->
+<section class="section team-section" style="background-color: var(--c-bg-subtle); border-top: 1px solid var(--c-border);">
     <div class="container">
 
         <div class="team-header reveal">
             <div class="team-header__content">
-                <p class="label">Who We Are</p>
-                <h2 class="team-header__title">Small team.<br>Serious ambition.</h2>
+                <p class="label">Our Team</p>
+                <h2 class="team-header__title">Focused engineering.<br>Serious ambition.</h2>
                 <p class="team-header__text">
-                    We are a focused group of engineers and designers building a technology company around one idea: businesses deserve software that actually works for them.
+                    We are a dedicated team of engineers, designers, and systems architects building technology around a fundamental truth: businesses deserve software that solves real problems.
                 </p>
             </div>
             <div class="team-header__visual">
@@ -262,7 +358,7 @@
                 {% endif %}
                 <h3 class="team-member__name">{{ member.full_name }}</h3>
                 <p class="team-member__role">{{ member.position }}</p>
-                <p class="team-member__bio">{{ member.bio|truncatewords:30 }}</p>
+                <p class="team-member__bio">{{ member.bio|truncatewords:28 }}</p>
                 <div class="team-member__links">
                     {% if member.linkedin %}
                     <a href="{{ member.linkedin }}" target="_blank" rel="noopener" class="team-member__link">LinkedIn</a>
@@ -283,67 +379,22 @@
 </section>
 
 
-<!-- ═══════════ WHY HARBE ═══════════ -->
-<section class="section">
-    <div class="container">
-
-        <div class="section__header reveal">
-            <p class="label">Why Harbe</p>
-            <h2 class="section__title">Built different. On purpose.</h2>
-        </div>
-
-        <div class="why-grid">
-            <div class="why-card reveal reveal--delay-1">
-                <div class="why-card__icon">⬡</div>
-                <h3 class="why-card__title">Built Around Your Business</h3>
-                <p class="why-card__desc">We don't sell templates. Every solution is engineered around how your business actually operates.</p>
-            </div>
-            <div class="why-card reveal reveal--delay-2">
-                <div class="why-card__icon">◈</div>
-                <h3 class="why-card__title">Modern Technology</h3>
-                <p class="why-card__desc">We use current, proven technologies that scale with your growth and adapt to change.</p>
-            </div>
-            <div class="why-card reveal reveal--delay-3">
-                <div class="why-card__icon">◎</div>
-                <h3 class="why-card__title">Practical Solutions</h3>
-                <p class="why-card__desc">We focus on what works. No unnecessary complexity — just reliable systems that deliver results.</p>
-            </div>
-            <div class="why-card reveal reveal--delay-1">
-                <div class="why-card__icon">⟡</div>
-                <h3 class="why-card__title">Long-Term Support</h3>
-                <p class="why-card__desc">We don't disappear after launch. We maintain, improve, and support the products we build.</p>
-            </div>
-            <div class="why-card reveal reveal--delay-2">
-                <div class="why-card__icon">⬢</div>
-                <h3 class="why-card__title">Direct Communication</h3>
-                <p class="why-card__desc">No account managers or ticket queues. You talk directly to the people building your product.</p>
-            </div>
-            <div class="why-card reveal reveal--delay-3">
-                <div class="why-card__icon">◇</div>
-                <h3 class="why-card__title">Focus on Results</h3>
-                <p class="why-card__desc">We measure success by the real impact our software has on your business operations and growth.</p>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ═══════════ FAQ ═══════════ -->
+<!-- ═══════════ FAQ SECTION ═══════════ -->
 {% if faqs %}
 <section class="section">
     <div class="container container--narrow">
 
         <div class="section__header reveal">
             <p class="label">FAQ</p>
-            <h2 class="section__title">Common questions.</h2>
+            <h2 class="section__title">Common Questions</h2>
+            <p class="section__subtitle">Everything you need to know about working with Harbe Digital Solutions.</p>
         </div>
 
         <div class="faq-list reveal reveal--delay-1">
             {% for faq in faqs %}
             <div class="faq-item">
                 <button class="faq-item__question" type="button" aria-expanded="false">
-                    {{ faq.question }}
+                    <span>{{ faq.question }}</span>
                     <span class="faq-item__icon">+</span>
                 </button>
                 <div class="faq-item__answer">
@@ -358,26 +409,260 @@
 {% endif %}
 
 
-<!-- ═══════════ CTA ═══════════ -->
+<!-- ═══════════ CTA SECTION ═══════════ -->
 <section class="section cta-section">
-    <div class="cta-section__glow"></div>
     <div class="container container--narrow">
 
         <div class="reveal">
-            <p class="label" style="text-align:center; margin-bottom: var(--s-lg);">Ready?</p>
+            <p class="label" style="margin-bottom: var(--s-md); color: var(--c-accent);">Start Your Project</p>
             <h2 class="cta-section__title">Have a business problem<br>worth solving?</h2>
-            <p class="cta-section__subtitle">Let's talk about what you need and how we can build it.</p>
+            <p class="cta-section__subtitle">
+                Let's discuss how custom software, ERP systems, or digital platforms can transform your organization.
+            </p>
             <div class="cta-section__actions">
                 <a href="{% url 'contact:contact' %}" class="btn btn--primary">
-                    Start a Project <span class="btn__arrow">→</span>
+                    Work With Us <span class="btn__arrow">→</span>
                 </a>
-                <a href="{% url 'contact:contact' %}" class="btn btn--outline">
-                    Talk to Us
+                <a href="{% url 'services:list' %}" class="btn btn--outline">
+                    Explore Our Services
                 </a>
             </div>
         </div>
 
     </div>
 </section>
+
+
+<!-- ═══════════ HARBE AI FLOATING CHATBOX ═══════════ -->
+<div class="chatbot-wrapper">
+    <!-- Chatbox Window -->
+    <div id="chatbot-window" class="chatbot-window" aria-hidden="true" role="dialog" aria-labelledby="chatbot-heading">
+        <!-- Header -->
+        <div class="chatbot-window__header">
+            <div class="chatbot-window__title-group">
+                <div class="chatbot-window__status-dot"></div>
+                <div>
+                    <h3 id="chatbot-heading" class="chatbot-window__title">Harbe AI</h3>
+                    <p class="chatbot-window__subtitle">Engineering &amp; System Assistant</p>
+                </div>
+            </div>
+            <button type="button" id="chatbot-close-btn" class="chatbot-window__close" aria-label="Close Harbe AI">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Scrollable Messages Area -->
+        <div id="chatbot-messages" class="chatbot-window__messages" role="log" aria-live="polite">
+            <div class="chat-message chat-message--ai">
+                <div class="chat-message__avatar" aria-hidden="true">❖</div>
+                <div class="chat-message__bubble">
+                    <p>Hello! I am Harbe AI. How can I assist you with your software, ERP, or digital systems project today?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Typing Indicator (hidden by default) -->
+        <div id="chatbot-typing" class="chatbot-typing" style="display: none;">
+            <div class="chat-message__avatar" aria-hidden="true">❖</div>
+            <div class="chatbot-typing__bubble">
+                <span>Harbe AI is typing</span>
+                <span class="chatbot-typing__dots">
+                    <span>.</span><span>.</span><span>.</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Input Form -->
+        <form id="chatbot-form" class="chatbot-window__form" autocomplete="off">
+            {% csrf_token %}
+            <input 
+                type="text" 
+                id="chatbot-input" 
+                class="chatbot-window__input" 
+                placeholder="Ask Harbe AI a question..." 
+                required 
+                aria-label="Message for Harbe AI"
+            >
+            <button type="submit" id="chatbot-send-btn" class="chatbot-window__send-btn" aria-label="Send message">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+            </button>
+        </form>
+    </div>
+
+    <!-- Floating Toggle Button -->
+    <button type="button" id="chatbot-toggle" class="chatbot-trigger" aria-label="Chat with Harbe AI" title="Chat with Harbe AI" aria-expanded="false" aria-controls="chatbot-window">
+        <span class="chatbot-trigger__icon-box" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                <path d="M8 10h.01"></path>
+                <path d="M12 10h.01"></path>
+                <path d="M16 10h.01"></path>
+            </svg>
+        </span>
+        <span class="chatbot-trigger__text">Harbe AI</span>
+    </button>
+</div>
+
+<script>
+(function() {
+    const toggleBtn = document.getElementById('chatbot-toggle');
+    const closeBtn = document.getElementById('chatbot-close-btn');
+    const chatWindow = document.getElementById('chatbot-window');
+    const chatForm = document.getElementById('chatbot-form');
+    const chatInput = document.getElementById('chatbot-input');
+    const messagesContainer = document.getElementById('chatbot-messages');
+    const typingIndicator = document.getElementById('chatbot-typing');
+    const sendBtn = document.getElementById('chatbot-send-btn');
+
+    if (!toggleBtn || !chatWindow || !chatForm) return;
+
+    function openChat() {
+        chatWindow.classList.add('is-open');
+        chatWindow.setAttribute('aria-hidden', 'false');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        setTimeout(() => chatInput.focus(), 120);
+        scrollToBottom();
+    }
+
+    function closeChat() {
+        chatWindow.classList.remove('is-open');
+        chatWindow.setAttribute('aria-hidden', 'true');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        toggleBtn.focus();
+    }
+
+    toggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (chatWindow.classList.contains('is-open')) {
+            closeChat();
+        } else {
+            openChat();
+        }
+    });
+
+    closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        closeChat();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && chatWindow.classList.contains('is-open')) {
+            closeChat();
+        }
+    });
+
+    function scrollToBottom() {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
+
+    function escapeHtml(str) {
+        return str
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    chatForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const message = chatInput.value.trim();
+        if (!message) return;
+
+        // Render user message bubble
+        const userMsgEl = document.createElement('div');
+        userMsgEl.className = 'chat-message chat-message--user';
+        userMsgEl.innerHTML = `
+            <div class="chat-message__bubble">
+                <p>${escapeHtml(message)}</p>
+            </div>
+        `;
+        messagesContainer.appendChild(userMsgEl);
+        chatInput.value = '';
+        scrollToBottom();
+
+        // Show typing indicator
+        typingIndicator.style.display = 'flex';
+        scrollToBottom();
+        chatInput.disabled = true;
+        sendBtn.disabled = true;
+
+        let aiMsgEl = null;
+        let aiResponseSpan = null;
+
+        try {
+            const csrfToken = chatForm.querySelector('[name=csrfmiddlewaretoken]')?.value || '';
+            const response = await fetch('/chat/send/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({ message: message })
+            });
+
+            // Hide typing indicator once response stream arrives
+            typingIndicator.style.display = 'none';
+
+            if (!response.ok) {
+                throw new Error('Server error');
+            }
+
+            // Create AI Message Bubble for streaming tokens
+            aiMsgEl = document.createElement('div');
+            aiMsgEl.className = 'chat-message chat-message--ai';
+            aiMsgEl.innerHTML = `
+                <div class="chat-message__avatar" aria-hidden="true">❖</div>
+                <div class="chat-message__bubble">
+                    <p class="ai-response-text"></p>
+                </div>
+            `;
+            messagesContainer.appendChild(aiMsgEl);
+            aiResponseSpan = aiMsgEl.querySelector('.ai-response-text');
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            while (true) {
+                const { value, done } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                aiResponseSpan.textContent += chunk;
+                scrollToBottom();
+            }
+
+        } catch (err) {
+            console.error('Chat error:', err);
+            typingIndicator.style.display = 'none';
+            if (!aiMsgEl) {
+                aiMsgEl = document.createElement('div');
+                aiMsgEl.className = 'chat-message chat-message--ai';
+                aiMsgEl.innerHTML = `
+                    <div class="chat-message__avatar" aria-hidden="true">❖</div>
+                    <div class="chat-message__bubble chat-message__bubble--error">
+                        <p>Sorry, something went wrong while connecting to Harbe AI. Please try again.</p>
+                    </div>
+                `;
+                messagesContainer.appendChild(aiMsgEl);
+            } else if (aiResponseSpan && !aiResponseSpan.textContent.trim()) {
+                aiResponseSpan.textContent = 'Sorry, something went wrong. Please try again.';
+            }
+            scrollToBottom();
+        } finally {
+            chatInput.disabled = false;
+            sendBtn.disabled = false;
+            chatInput.focus();
+            scrollToBottom();
+        }
+    });
+})();
+</script>
 
 {% endblock %}

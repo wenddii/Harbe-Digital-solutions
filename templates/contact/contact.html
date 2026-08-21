@@ -2,7 +2,7 @@
 
 {% block title %}Contact Us — Harbe Digital Solutions{% endblock %}
 
-{% block description %}Get in touch with Harbe Digital Solutions to discuss your next software project. Start a project or request a consultation.{% endblock %}
+{% block description %}Get in touch with Harbe Digital Solutions to discuss your enterprise software, ERP, or web application project.{% endblock %}
 
 {% block content %}
 
@@ -13,10 +13,10 @@
 
             <!-- Left: Info -->
             <div class="contact-info reveal">
-                <p class="label">Contact</p>
-                <h1 class="contact-info__title">Let's build<br>something together.</h1>
+                <p class="label">Initiate Partnership</p>
+                <h1 class="contact-info__title">Let's build<br>something that endures.</h1>
                 <p class="contact-info__text">
-                    Have a project in mind? A problem that needs solving? Or just want to learn more about how we work? We'd love to hear from you.
+                    Have an operational challenge that requires custom engineering? Or seeking an ERP platform tailored to your business? Reach out to start a conversation directly with our engineering team.
                 </p>
 
                 {% if company %}
@@ -46,19 +46,36 @@
 
                     {% if company.address %}
                     <div class="contact-info__item">
-                        <div class="contact-info__item-icon">⌘</div>
+                        <div class="contact-info__item-icon">❖</div>
                         <div>
-                            <p class="contact-info__item-label">Location</p>
+                            <p class="contact-info__item-label">Headquarters</p>
                             <p class="contact-info__item-value">{{ company.address }}</p>
                         </div>
                     </div>
                     {% endif %}
+                {% else %}
+                    <div class="contact-info__item">
+                        <div class="contact-info__item-icon">✉</div>
+                        <div>
+                            <p class="contact-info__item-label">Direct Email</p>
+                            <p class="contact-info__item-value">
+                                <a href="mailto:info@harbedigital.com">info@harbedigital.com</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-info__item">
+                        <div class="contact-info__item-icon">❖</div>
+                        <div>
+                            <p class="contact-info__item-label">Location</p>
+                            <p class="contact-info__item-value">Addis Ababa, Ethiopia</p>
+                        </div>
+                    </div>
                 {% endif %}
             </div>
 
             <!-- Right: Form -->
             <div class="contact-form reveal reveal--delay-2">
-                <h2 class="contact-form__title">Send us a message</h2>
+                <h2 class="contact-form__title">Send us a project inquiry</h2>
 
                 {% if form.non_field_errors %}
                 <div style="margin-bottom: var(--s-lg);">
@@ -91,27 +108,27 @@
                             {% if form.phone.errors %}{{ form.phone.errors }}{% endif %}
                         </div>
                         <div class="form-group">
-                            <label for="{{ form.company.id_for_label }}">Company</label>
+                            <label for="{{ form.company.id_for_label }}">Company / Organization</label>
                             {{ form.company }}
                             {% if form.company.errors %}{{ form.company.errors }}{% endif %}
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ form.subject.id_for_label }}">Subject *</label>
+                        <label for="{{ form.subject.id_for_label }}">Project Type / Subject *</label>
                         {{ form.subject }}
                         {% if form.subject.errors %}{{ form.subject.errors }}{% endif %}
                     </div>
 
                     <div class="form-group">
-                        <label for="{{ form.message.id_for_label }}">Message *</label>
+                        <label for="{{ form.message.id_for_label }}">Project Details &amp; Objectives *</label>
                         {{ form.message }}
                         {% if form.message.errors %}{{ form.message.errors }}{% endif %}
                     </div>
 
                     <div class="form-submit">
                         <button type="submit" class="btn btn--primary" style="width: 100%; justify-content: center;">
-                            Send Message <span class="btn__arrow">→</span>
+                            Submit Inquiry <span class="btn__arrow">→</span>
                         </button>
                     </div>
                 </form>

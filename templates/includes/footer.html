@@ -6,51 +6,67 @@
 
             <!-- Brand -->
             <div class="footer__brand">
-                <div class="footer__logo">
-                    <span class="nav__logo-mark">H</span>
-                    Harbe Digital Solutions
-                </div>
+                <a href="{% url 'core:home' %}" class="footer__logo">
+                    <span class="nav__logo-mark" aria-hidden="true">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="2" width="20" height="20" rx="3" stroke="currentColor" stroke-width="1.8" stroke-opacity="0.3"/>
+                            <path d="M7 6v12M17 6v12M7 12h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+                            <path d="M12 4.5v1M12 18.5v1" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </span>
+                    <span class="nav__logo-text">Harbe <span class="nav__logo-sub">Digital Solutions</span></span>
+                </a>
+                <p class="footer__tagline">
+                    Rooted in Ethiopian heritage. Building the digital systems of tomorrow.
+                </p>
                 <p class="footer__desc">
-                    We build digital systems that help businesses operate better, grow faster, and deliver more value.
+                    We design and engineer enterprise ERP platforms, custom software, and robust business systems that help Ethiopian and global organizations scale with precision.
                 </p>
             </div>
 
             <!-- Navigation -->
             <div>
-                <h4 class="footer__heading">Navigation</h4>
-                <a href="{% url 'core:home' %}" class="footer__link">Home</a>
-                <a href="{% url 'services:list' %}" class="footer__link">Services</a>
-                <a href="{% url 'portfolio:list' %}" class="footer__link">Work</a>
-                <a href="{% url 'core:about' %}" class="footer__link">About</a>
-                <a href="{% url 'contact:contact' %}" class="footer__link">Contact</a>
+                <h4 class="footer__heading">Company</h4>
+                <div class="footer__links-col">
+                    <a href="{% url 'core:home' %}" class="footer__link">Home</a>
+                    <a href="{% url 'core:about' %}" class="footer__link">About &amp; Story</a>
+                    <a href="{% url 'services:list' %}" class="footer__link">Our Services</a>
+                    <a href="{% url 'portfolio:list' %}" class="footer__link">Selected Work</a>
+                    <a href="{% url 'contact:contact' %}" class="footer__link">Contact</a>
+                </div>
             </div>
 
             <!-- Services -->
             <div>
-                <h4 class="footer__heading">Services</h4>
-                <span class="footer__link">Web Development</span>
-                <span class="footer__link">Custom Software</span>
-                <span class="footer__link">Mobile Apps</span>
-                <span class="footer__link">AI &amp; Automation</span>
-                <span class="footer__link">Business Systems</span>
+                <h4 class="footer__heading">Solutions</h4>
+                <div class="footer__links-col">
+                    <span class="footer__static-item">Enterprise ERP &amp; Systems</span>
+                    <span class="footer__static-item">Custom Software Engineering</span>
+                    <span class="footer__static-item">Web Applications</span>
+                    <span class="footer__static-item">Mobile Applications</span>
+                    <span class="footer__static-item">AI &amp; Intelligent Automation</span>
+                </div>
             </div>
 
-            <!-- Contact -->
+            <!-- Contact & Connection -->
             <div>
-                <h4 class="footer__heading">Contact</h4>
-                <a href="{% url 'contact:contact' %}" class="footer__link">Start a Project</a>
-                <a href="mailto:info@harbedigital.com" class="footer__link">info@harbedigital.com</a>
+                <h4 class="footer__heading">Get in Touch</h4>
+                <div class="footer__links-col">
+                    <a href="{% url 'contact:contact' %}" class="footer__link footer__link--highlight">Start a Project →</a>
+                    <a href="mailto:info@harbedigital.com" class="footer__link">info@harbedigital.com</a>
+                    <p class="footer__meta-text">Addis Ababa, Ethiopia</p>
+                </div>
             </div>
 
         </div>
 
         <div class="footer__bottom">
             <p class="footer__copy">
-                &copy; {% now "Y" %} Harbe Digital Solutions. All rights reserved.
+                &copy; {% now "Y" %} Harbe Digital Solutions. Engineered with purpose.
             </p>
             <div class="footer__social">
-                <a href="#" class="footer__social-link" aria-label="LinkedIn">LinkedIn</a>
-                <a href="#" class="footer__social-link" aria-label="GitHub">GitHub</a>
+                <a href="https://www.linkedin.com" target="_blank" rel="noopener" class="footer__social-link" aria-label="LinkedIn">LinkedIn</a>
+                <a href="https://github.com" target="_blank" rel="noopener" class="footer__social-link" aria-label="GitHub">GitHub</a>
             </div>
         </div>
 
