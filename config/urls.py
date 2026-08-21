@@ -10,7 +10,10 @@ urlpatterns = [
     path("services/", include("apps.services.urls")),
     path("portfolio/", include("apps.portfolio.urls")),
     path("contact/", include("apps.contact.urls")),
+    path("chat/", include("apps.chatbot.urls")),
 ]
+
+
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

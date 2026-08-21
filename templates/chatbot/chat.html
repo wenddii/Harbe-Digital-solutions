@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Harbe AI Assistant</title>
+</head>
+
+<body>
+
+<h1>Harbe AI Assistant</h1>
+
+<div id="messages"></div>
+
+<form id="chat-form">
+    {% csrf_token %}
+
+    <input
+        type="text"
+        id="message"
+        placeholder="Type a message..."
+        required
+    >
+
+    <button type="submit">
+        Send
+    </button>
+</form>
+
+
+<script>
+
+const form = document.getElementById("chat-form");
+const messageInput = document.getElementById("message");
+const messages = document.getElementById("messages");
+
+
+form.addEventListener("submit", async function(e) {
+
+    e.preventDefault();
+
+    const message = messageInput.value.trim();
+
+    if (!message) {
+        return;
+    }
+
+
+    // Show user's message
+    messages.innerHTML += `
+        <p>
+            <strong>You:</strong> ${message}
+        </p>
+    `;
+
+
+    // Create empty AI message
+    const aiMessage = document.createElement("p");
+
+    aiMessage.innerHTML = `
+        <strong>AI:</strong> 
+        <span class="ai-response"></span>
+    `;
+
+    messages.appendChild(aiMessage);
+
+
+    const aiResponse = aiMessage.querySelector(".ai-response");
+
+
+    // Clear input
+    messageInput.value = "";
+
+
+    try {
+
+        const response = await fetch("/chat/send/", {
+
+            method: "POST",
+
+            headers: {
+                "X-CSRFToken": document.querySelector(
+                    "[name=csrfmiddlewaretoken]"
+                ).value,
+
+                "Content-Type":
+                    "application/x-www-form-urlencoded",
+            },
+
+            body: new URLSearchParams({
+                message: message
+            })
+        });
+
+
+        if (!response.ok) {
+            throw new Error("Server error");
+        }
+
+
+        // Get the response stream
+        const reader = response.body.getReader();
+
+        const decoder = new TextDecoder();
+
+
+        // Read chunks
+        while (true) {
+
+            const { value, done } = await reader.read();
+
+
+            if (done) {
+                break;
+            }
+
+
+            // Convert bytes to text
+            const chunk = decoder.decode(value, {
+                stream: true
+            });
+
+
+            // Add chunk to AI response
+            aiResponse.textContent += chunk;
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        aiResponse.textContent =
+            "Sorry, something went wrong.";
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
