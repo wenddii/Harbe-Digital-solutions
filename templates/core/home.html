@@ -8,64 +8,54 @@
 {% block content %}
 
 <!-- ═══════════ HERO SECTION ═══════════ -->
-<section class="hero">
+<section class="hero" style="background-image: url('{% static 'images/lalibela-tech-hero.jpg' %}');">
+
+    <!-- Dark gradient overlay -->
+    <div class="hero__overlay"></div>
+
+    <!-- Particle canvas -->
+    <canvas id="hero-particles" class="hero__canvas" aria-hidden="true"></canvas>
+
+    <!-- Floating decorative elements -->
+    <div class="hero__floats" aria-hidden="true">
+        <div class="hero__float hero__float--orb-1"></div>
+        <div class="hero__float hero__float--orb-2"></div>
+        <div class="hero__float hero__float--orb-3"></div>
+        <div class="hero__float hero__float--geo-1"></div>
+        <div class="hero__float hero__float--geo-2"></div>
+        <div class="hero__float hero__float--beam-1"></div>
+    </div>
+
     <div class="container container--wide">
         <div class="hero__inner">
 
             <div class="hero__content">
-                <div class="hero__eyebrow reveal">
-                    <span class="hero__eyebrow-symbol">❖</span>
-                    Rooted in Ethiopian Heritage
-                </div>
 
-                <h1 class="hero__title reveal reveal--delay-1">
-                    Building the Digital Systems Behind Modern Businesses.
+                <h1 class="hero__title hero-entrance hero-entrance--1" data-parallax-speed="0.02">
+                    Software That Moves<br>Your Business Forward.
                 </h1>
 
-                <p class="hero__subtitle reveal reveal--delay-2">
-                    Harbe Digital Solutions builds practical software, business systems, and ERP solutions designed around real business problems.
+                <p class="hero__subtitle hero-entrance hero-entrance--2">
+                    We design and engineer custom software, ERP platforms, and digital systems built around how your business actually works.
                 </p>
 
-                <div class="hero__actions reveal reveal--delay-3">
-                    <a href="{% url 'contact:contact' %}" class="btn btn--primary">
-                        Work With Us
+                <div class="hero__actions hero-entrance hero-entrance--3">
+                    <a href="{% url 'contact:contact' %}" class="btn btn--primary btn--glow">
+                        Start a Project
                         <span class="btn__arrow">→</span>
                     </a>
-                    <a href="{% url 'services:list' %}" class="btn btn--outline">
-                        Explore Our Services
+                    <a href="{% url 'services:list' %}" class="btn btn--hero-outline">
+                        View Services
                     </a>
                 </div>
-            </div>
 
-            <div class="hero__visual reveal reveal--delay-2">
-                <div class="hero__frame">
-                    <div class="hero__frame-header">
-                        <div class="hero__frame-title">
-                            <span class="hero__status-dot"></span>
-                            HARBE SYSTEM ENGINE
-                        </div>
-                        <span class="mono" style="font-size: 0.75rem; color: var(--c-accent);">// ARCHITECTURAL ENGINEERING</span>
-                    </div>
-
-                    <div class="hero__image-container">
-                        <img src="{% static 'images/hero-team.jpg' %}" alt="Harbe Digital Solutions software engineering team" loading="eager">
-                    </div>
-
-                    <div class="hero__metrics-grid">
-                        <div class="hero__metric-item">
-                            <p class="hero__metric-label">Engineering Focus</p>
-                            <p class="hero__metric-value">Custom ERP &amp; Software</p>
-                        </div>
-                        <div class="hero__metric-item">
-                            <p class="hero__metric-label">Philosophy</p>
-                            <p class="hero__metric-value">Built to Endure</p>
-                        </div>
-                    </div>
-                </div>
             </div>
 
         </div>
     </div>
+
+    <!-- Bottom fade into page -->
+    <div class="hero__fade-bottom"></div>
 </section>
 
 
@@ -240,43 +230,6 @@
             <a href="{% url 'portfolio:list' %}" class="btn btn--outline">
                 View Full Portfolio <span class="btn__arrow">→</span>
             </a>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ═══════════ PROCESS SECTION ═══════════ -->
-<section class="section process-section">
-    <div class="container">
-
-        <div class="section__header reveal">
-            <p class="label">Our Approach</p>
-            <h2 class="section__title">How we engineer systems.</h2>
-            <p class="section__subtitle">A structured, transparent methodology from problem definition to live deployment.</p>
-        </div>
-
-        <div class="process-grid">
-            <div class="process-step reveal reveal--delay-1">
-                <div class="process-step__number">01</div>
-                <h3 class="process-step__title">Understand</h3>
-                <p class="process-step__desc">We dissect your operational workflows, identify bottlenecks, and define precise technical requirements.</p>
-            </div>
-            <div class="process-step reveal reveal--delay-2">
-                <div class="process-step__number">02</div>
-                <h3 class="process-step__title">Design</h3>
-                <p class="process-step__desc">We engineer intuitive user interfaces and a resilient data architecture built to withstand scaling.</p>
-            </div>
-            <div class="process-step reveal reveal--delay-3">
-                <div class="process-step__number">03</div>
-                <h3 class="process-step__title">Build</h3>
-                <p class="process-step__desc">We develop using clean, tested, and secure codebases with continuous milestone demonstrations.</p>
-            </div>
-            <div class="process-step reveal reveal--delay-4">
-                <div class="process-step__number">04</div>
-                <h3 class="process-step__title">Deploy &amp; Support</h3>
-                <p class="process-step__desc">We deploy to stable environments, train your personnel, and provide ongoing performance monitoring.</p>
-            </div>
         </div>
 
     </div>
