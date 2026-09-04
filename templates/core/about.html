@@ -123,51 +123,6 @@
 {% endif %}
 
 
-<!-- ═══════════ TEAM ═══════════ -->
-<section class="section">
-    <div class="container">
-
-        <div class="section__header reveal">
-            <p class="label">Our Team</p>
-            <h2 class="section__title">The people building your solutions.</h2>
-            <p class="section__subtitle">Engineers, designers, and problem solvers.</p>
-        </div>
-
-        {% if team_members %}
-        <div class="team-grid">
-            {% for member in team_members %}
-            <div class="team-member reveal reveal--delay-{{ forloop.counter }}">
-                {% if member.photo %}
-                    <img src="{{ member.photo.url }}" alt="{{ member.full_name }}" class="team-member__photo" loading="lazy">
-                {% else %}
-                    <div class="team-member__photo-placeholder">{{ member.full_name|first }}</div>
-                {% endif %}
-                <h3 class="team-member__name">{{ member.full_name }}</h3>
-                <p class="team-member__role">{{ member.position }}</p>
-                <p class="team-member__bio">{{ member.bio }}</p>
-                <div class="team-member__links">
-                    {% if member.linkedin %}
-                    <a href="{{ member.linkedin }}" target="_blank" rel="noopener" class="team-member__link">LinkedIn</a>
-                    {% endif %}
-                    {% if member.github %}
-                    <a href="{{ member.github }}" target="_blank" rel="noopener" class="team-member__link">GitHub</a>
-                    {% endif %}
-                    {% if member.email %}
-                    <a href="mailto:{{ member.email }}" class="team-member__link">Email</a>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% else %}
-        <div class="reveal" style="text-align: center;">
-            <p style="color: var(--c-text-secondary);">Our team page is being updated. Check back soon.</p>
-        </div>
-        {% endif %}
-
-    </div>
-</section>
-
 
 <!-- ═══════════ CTA ═══════════ -->
 <section class="section cta-section">

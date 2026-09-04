@@ -314,7 +314,7 @@ if not DEBUG:
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # ============================================================
-# OPENAI API KEY
+# gemini API KEY
 # ============================================================
 
 

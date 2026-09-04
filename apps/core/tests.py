@@ -75,7 +75,6 @@ class WebsiteTests(TestCase):
         self.assertContains(response, "Harbe Digital Solutions")
         self.assertContains(response, "Custom Web Development")
         self.assertContains(response, "Enterprise CRM System")
-        self.assertContains(response, "Jane Doe")
         self.assertContains(response, "What services do you offer?")
 
     def test_about_page(self):
@@ -83,8 +82,6 @@ class WebsiteTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "core/about.html")
         self.assertContains(response, "Harbe Digital Solutions")
-        self.assertContains(response, "Jane Doe")
-        self.assertContains(response, "Lead Engineer")
 
     def test_services_list_page(self):
         response = self.client.get(reverse("services:list"))
@@ -126,7 +123,7 @@ class WebsiteTests(TestCase):
         response = self.client.get(reverse("contact:contact"))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "contact/contact.html")
-        self.assertContains(response, "Send us a message")
+        self.assertContains(response, "Send us a project inquiry")
 
     def test_contact_page_post_success(self):
         post_data = {

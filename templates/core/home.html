@@ -330,58 +330,10 @@
 </section>
 
 
-<!-- ═══════════ TEAM SECTION ═══════════ -->
-<section class="section team-section" style="background-color: var(--c-bg-subtle); border-top: 1px solid var(--c-border);">
-    <div class="container">
-
-        <div class="team-header reveal">
-            <div class="team-header__content">
-                <p class="label">Our Team</p>
-                <h2 class="team-header__title">Focused engineering.<br>Serious ambition.</h2>
-                <p class="team-header__text">
-                    We are a dedicated team of engineers, designers, and systems architects building technology around a fundamental truth: businesses deserve software that solves real problems.
-                </p>
-            </div>
-            <div class="team-header__visual">
-                <img src="{% static 'images/hero-team.jpg' %}" alt="Harbe Digital Solutions team" loading="lazy">
-            </div>
-        </div>
-
-        {% if team_members %}
-        <div class="team-grid">
-            {% for member in team_members %}
-            <div class="team-member reveal reveal--delay-{{ forloop.counter }}">
-                {% if member.photo %}
-                    <img src="{{ member.photo.url }}" alt="{{ member.full_name }}" class="team-member__photo" loading="lazy">
-                {% else %}
-                    <div class="team-member__photo-placeholder">{{ member.full_name|first }}</div>
-                {% endif %}
-                <h3 class="team-member__name">{{ member.full_name }}</h3>
-                <p class="team-member__role">{{ member.position }}</p>
-                <p class="team-member__bio">{{ member.bio|truncatewords:28 }}</p>
-                <div class="team-member__links">
-                    {% if member.linkedin %}
-                    <a href="{{ member.linkedin }}" target="_blank" rel="noopener" class="team-member__link">LinkedIn</a>
-                    {% endif %}
-                    {% if member.github %}
-                    <a href="{{ member.github }}" target="_blank" rel="noopener" class="team-member__link">GitHub</a>
-                    {% endif %}
-                    {% if member.email %}
-                    <a href="mailto:{{ member.email }}" class="team-member__link">Email</a>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
-
-    </div>
-</section>
-
 
 <!-- ═══════════ FAQ SECTION ═══════════ -->
 {% if faqs %}
-<section class="section">
+<section class="section" style="background-color: var(--c-bg-subtle); border-top: 1px solid var(--c-border);">
     <div class="container container--narrow">
 
         <div class="section__header reveal">
