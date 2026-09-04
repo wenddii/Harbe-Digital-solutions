@@ -383,14 +383,14 @@
         <!-- Input Form -->
         <form id="chatbot-form" class="chatbot-window__form" autocomplete="off">
             {% csrf_token %}
-            <input 
-                type="text" 
+            <textarea
                 id="chatbot-input" 
                 class="chatbot-window__input" 
                 placeholder="Ask Harbe AI a question..." 
+                rows="1"
                 required 
                 aria-label="Message for Harbe AI"
-            >
+            ></textarea>
             <button type="submit" id="chatbot-send-btn" class="chatbot-window__send-btn" aria-label="Send message">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="22" y1="2" x2="11" y2="13"></line>
@@ -431,6 +431,7 @@
         chatWindow.classList.add('is-open');
         chatWindow.setAttribute('aria-hidden', 'false');
         toggleBtn.setAttribute('aria-expanded', 'true');
+        document.body.classList.add('chatbot-open');
         setTimeout(() => chatInput.focus(), 120);
         scrollToBottom();
     }
@@ -439,6 +440,7 @@
         chatWindow.classList.remove('is-open');
         chatWindow.setAttribute('aria-hidden', 'true');
         toggleBtn.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('chatbot-open');
         toggleBtn.focus();
     }
 
@@ -466,6 +468,14 @@
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
+    function resizeChatInput() {
+        if (!window.matchMedia('(max-width: 768px)').matches) return;
+        chatInput.style.height = 'auto';
+        chatInput.style.height = `${Math.min(chatInput.scrollHeight, 120)}px`;
+    }
+
+    chatInput.addEventListener('input', resizeChatInput);
+
     function escapeHtml(str) {
         return str
             .replace(/&/g, "&amp;")
@@ -490,6 +500,7 @@
         `;
         messagesContainer.appendChild(userMsgEl);
         chatInput.value = '';
+        resizeChatInput();
         scrollToBottom();
 
         // Show typing indicator
