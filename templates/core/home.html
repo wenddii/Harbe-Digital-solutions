@@ -5,10 +5,18 @@
 
 {% block description %}Harbe Digital Solutions builds practical software, business systems, and ERP solutions rooted in Ethiopian craftsmanship and designed for modern businesses.{% endblock %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+{% endblock %}
+
 {% block content %}
 
 <!-- ═══════════ HERO SECTION ═══════════ -->
-<section class="hero" style="background-image: url('{% static 'images/lalibela-tech-hero.jpg' %}');">
+<section class="hero" style="--hero-image: url('{% static 'images/lalibela-tech-hero.jpg' %}');">
+
+    <div class="hero__image" aria-hidden="true">
+        <div class="hero__image-layer"></div>
+    </div>
 
     <!-- Dark gradient overlay -->
     <div class="hero__overlay"></div>
@@ -110,9 +118,17 @@
             {% for service in featured_services %}
             <a href="{% url 'services:detail' service.pk %}" class="service-card">
                 <div class="service-card__index">0{{ forloop.counter }}</div>
-                {% if service.icon %}
-                <div class="service-card__icon">
+                {% if service.image %}
+                <div class="service-card__media service-card__media--image">
+                    <img src="{{ service.image.url }}" alt="{{ service.name }}" loading="lazy" width="640" height="360">
+                </div>
+                {% elif service.icon %}
+                <div class="service-card__media service-card__media--icon" aria-hidden="true">
                     <i class="{{ service.icon }}"></i>
+                </div>
+                {% else %}
+                <div class="service-card__media service-card__media--fallback" aria-hidden="true">
+                    <i class="fa-solid fa-layer-group"></i>
                 </div>
                 {% endif %}
                 <h3 class="service-card__title">{{ service.name }}</h3>

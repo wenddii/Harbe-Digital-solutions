@@ -170,8 +170,8 @@ function initHeroParallax() {
   if (window.matchMedia('(hover: none)').matches) return;
   if (window.innerWidth < 768) return;
 
-  const title = hero.querySelector('.hero__title');
-  const subtitle = hero.querySelector('.hero__subtitle');
+  const imageLayer = hero.querySelector('.hero__image-layer');
+  if (!imageLayer) return;
 
   let targetX = 0;
   let targetY = 0;
@@ -187,19 +187,8 @@ function initHeroParallax() {
     currentX = lerp(currentX, targetX, 0.06);
     currentY = lerp(currentY, targetY, 0.06);
 
-    // Background shifts opposite to cursor (max ~15px)
-    hero.style.backgroundPosition =
-      `calc(50% + ${-currentX * 0.6}px) calc(30% + ${-currentY * 0.4}px)`;
-
-    // Title shifts slightly with cursor
-    if (title) {
-      title.style.transform = `translate(${currentX * 0.15}px, ${currentY * 0.1}px)`;
-    }
-
-    // Subtitle subtle shift
-    if (subtitle) {
-      subtitle.style.transform = `translate(${currentX * 0.08}px, ${currentY * 0.05}px)`;
-    }
+    imageLayer.style.setProperty('--hero-parallax-x', `${-currentX * 0.6}px`);
+    imageLayer.style.setProperty('--hero-parallax-y', `${-currentY * 0.4}px`);
 
     rafId = requestAnimationFrame(updateParallax);
   }

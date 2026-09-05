@@ -4,6 +4,10 @@
 
 {% block description %}Explore the comprehensive range of software engineering, ERP business platforms, web/mobile applications, and AI automations offered by Harbe Digital Solutions.{% endblock %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+{% endblock %}
+
 {% block content %}
 
 <!-- ═══════════ PAGE HEADER ═══════════ -->
@@ -27,8 +31,16 @@
             <a href="{% url 'services:detail' service.pk %}" class="service-page-card reveal reveal--delay-{{ forloop.counter }}">
 
                 {% if service.image %}
-                <div class="service-page-card__image">
-                    <img src="{{ service.image.url }}" alt="{{ service.name }}" loading="lazy">
+                <div class="service-page-card__media service-page-card__media--image">
+                    <img src="{{ service.image.url }}" alt="{{ service.name }}" loading="lazy" width="640" height="360">
+                </div>
+                {% elif service.icon %}
+                <div class="service-page-card__media service-page-card__media--icon" aria-hidden="true">
+                    <i class="{{ service.icon }}"></i>
+                </div>
+                {% else %}
+                <div class="service-page-card__media service-page-card__media--fallback" aria-hidden="true">
+                    <i class="fa-solid fa-layer-group"></i>
                 </div>
                 {% endif %}
 
