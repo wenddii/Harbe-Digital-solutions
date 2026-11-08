@@ -61,7 +61,6 @@ INSTALLED_APPS = [
     "apps.services",
     "apps.portfolio",
     "apps.contact",
-    "apps.chatbot",
 ]
 
 
@@ -313,9 +312,3 @@ if not DEBUG:
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# ============================================================
-# gemini API KEY
-# ============================================================
-
-
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
