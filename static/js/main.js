@@ -11,11 +11,85 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothAnchors();
   initAutoHideMessages();
   initAtmosphere();
+  initHorizontalScroll();
   initHeroParallax();
   initParticleCanvas();
   initCardTilt();
   initStatCounter();
 });
+
+
+/* ─── Cinematic homepage horizontal scroll ─── */
+function initHorizontalScroll() {
+  const stage = document.querySelector('[data-horizontal-scroll]');
+  const track = stage && stage.querySelector('.cinematic-track');
+  if (!stage || !track) return;
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
+  let maxTranslate = 0;
+  let stageTop = 0;
+  let frame = null;
+
+  const setLinearLayout = () => {
+    stage.classList.add('is-linear');
+    stage.style.height = 'auto';
+  };
+
+  const measure = () => {
+    if (reduceMotion || isMobile()) {
+      setLinearLayout();
+      return;
+    }
+
+    stage.classList.remove('is-linear');
+    maxTranslate = Math.max(0, track.scrollWidth - window.innerWidth);
+    stageTop = stage.getBoundingClientRect().top + window.scrollY;
+    stage.style.height = `${maxTranslate + window.innerHeight}px`;
+    update();
+  };
+
+  const update = () => {
+    if (reduceMotion || isMobile() || stage.classList.contains('is-linear')) return;
+
+    const progress = Math.max(0, Math.min(1, (window.scrollY - stageTop) / maxTranslate));
+    track.style.transform = `translate3d(${-progress * maxTranslate}px, 0, 0)`;
+
+    const heroRotation = ((progress * 2 - 1) * 2.5).toFixed(3);
+    track.style.setProperty('--hero-rotation', `${heroRotation}deg`);
+  };
+
+  const requestUpdate = () => {
+    if (!frame) frame = requestAnimationFrame(() => {
+      frame = null;
+      update();
+    });
+  };
+
+  document.querySelectorAll('a[href*="#"]').forEach(link => {
+    link.addEventListener('click', event => {
+      const targetHash = new URL(link.href, window.location.href).hash;
+      const target = targetHash ? document.querySelector(targetHash) : null;
+      if (!link.closest('.cinematic-home') && !link.closest('.nav')) return;
+      if (!target || reduceMotion || isMobile() || stage.classList.contains('is-linear')) return;
+
+      event.preventDefault();
+      const panels = Array.from(track.children);
+      const panelIndex = panels.indexOf(target);
+      if (panelIndex < 0) return;
+
+      const targetProgress = panels.length > 1 ? panelIndex / (panels.length - 1) : 0;
+      window.scrollTo({
+        top: stageTop + targetProgress * maxTranslate,
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', measure, { passive: true });
+  measure();
+}
 
 
 /* ─── Navbar scroll behaviour ─── */
@@ -108,6 +182,7 @@ function initFAQAccordion() {
 /* ─── Smooth scroll for anchor links ─── */
 function initSmoothAnchors() {
   document.querySelectorAll('a[href^="#"]').forEach(a => {
+    if (a.closest('.cinematic-home')) return;
     a.addEventListener('click', e => {
       const target = document.querySelector(a.getAttribute('href'));
       if (target) {
