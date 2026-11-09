@@ -9,39 +9,39 @@
 /* ─── Design Tokens ─── */
 :root {
   /* Color Palette — Warm Ethiopian Stone, Earth, Bronze, Deep Charcoal */
-  --c-bg:             #fcfbf8;
-  --c-bg-subtle:      #f5f1ea;
-  --c-bg-card:        rgba(255, 255, 255, 0.84);
-  --c-bg-elevated:    #ece6dc;
-  --c-surface:        #e2dacb;
-  --c-surface-soft:   rgba(226, 218, 203, 0.45);
+  --c-bg:             #fffaf0;
+  --c-bg-subtle:      #f8f0e2;
+  --c-bg-card:        rgba(255, 253, 247, 0.92);
+  --c-bg-elevated:    #f1e4d0;
+  --c-surface:        #ead8bd;
+  --c-surface-soft:   rgba(234, 216, 189, 0.48);
   
-  --c-border:         rgba(42, 36, 28, 0.10);
-  --c-border-hover:   rgba(184, 130, 59, 0.45);
-  --c-border-strong:  rgba(42, 36, 28, 0.20);
-  --c-border-gold:    rgba(184, 130, 59, 0.30);
+  --c-border:         rgba(69, 53, 35, 0.12);
+  --c-border-hover:   rgba(196, 146, 77, 0.52);
+  --c-border-strong:  rgba(69, 53, 35, 0.22);
+  --c-border-gold:    rgba(196, 146, 77, 0.36);
   
-  --c-text:           #191714;
-  --c-text-secondary: #544d44;
-  --c-text-muted:     #847a6d;
+  --c-text:           #29231d;
+  --c-text-secondary: #625548;
+  --c-text-muted:     #8d7b69;
   
   /* Restrained Bronze / Ochre / Gold Accents */
-  --c-accent:         #b8823b;
-  --c-accent-hover:   #9a6a2a;
-  --c-accent-soft:    rgba(184, 130, 59, 0.10);
-  --c-accent-glow:    rgba(184, 130, 59, 0.22);
+  --c-accent:         #c99a5a;
+  --c-accent-hover:   #a96832;
+  --c-accent-soft:    rgba(201, 154, 90, 0.14);
+  --c-accent-glow:    rgba(201, 154, 90, 0.26);
   
   /* Dark Highland Stone & Basalt (Used for Footer, Nav, and Contrast Hero UI) */
-  --c-dark:           #141210;
-  --c-dark-surface:   #1a1714;
-  --c-dark-card:      #211d19;
-  --c-dark-border:    rgba(184, 130, 59, 0.22);
-  --c-dark-text:      #f5f1ea;
-  --c-dark-muted:     #9f9486;
+  --c-dark:           #4a3322;
+  --c-dark-surface:   #60442c;
+  --c-dark-card:      #705035;
+  --c-dark-border:    rgba(201, 154, 90, 0.32);
+  --c-dark-text:      #fffaf0;
+  --c-dark-muted:     #ead8bd;
   
   --c-success:        #2d6a4f;
   --c-error:          #c14949;
-  --c-white:          #ffffff;
+  --c-white:          #fffdf7;
 
   /* Typography */
   --font-sans:     'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -92,10 +92,10 @@
   --t-slow:     0.6s;
 
   /* Shadows */
-  --shadow-sm:   0 1px 3px rgba(35, 29, 23, 0.06);
-  --shadow-md:   0 10px 25px rgba(35, 29, 23, 0.08);
-  --shadow-lg:   0 20px 45px rgba(35, 29, 23, 0.12);
-  --shadow-dark: 0 20px 50px rgba(0, 0, 0, 0.35);
+  --shadow-sm:   0 1px 3px rgba(91, 61, 32, 0.08);
+  --shadow-md:   0 10px 25px rgba(91, 61, 32, 0.11);
+  --shadow-lg:   0 20px 45px rgba(91, 61, 32, 0.15);
+  --shadow-dark: 0 20px 50px rgba(91, 61, 32, 0.24);
   --shadow-glow: 0 0 35px var(--c-accent-glow);
 }
 
@@ -267,14 +267,14 @@ button {
 }
 
 .btn--primary {
-  background-color: var(--c-text);
+  background: linear-gradient(135deg, #c99a5a, #b9783f);
   color: var(--c-bg);
-  border-color: var(--c-text);
+  border-color: #b9783f;
   box-shadow: var(--shadow-sm);
 }
 .btn--primary:hover {
-  background-color: var(--c-accent-hover);
-  border-color: var(--c-accent-hover);
+  background: linear-gradient(135deg, #a96832, #8f512c);
+  border-color: #8f512c;
   color: var(--c-white);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
@@ -2600,4 +2600,166 @@ button {
   .service-page-card:hover .service-page-card__media--image img {
     transform: none;
   }
+}
+
+/* ─── Warm ivory palette for the cinematic and detail-page surfaces ─── */
+.nav,
+.nav.is-scrolled,
+.portfolio-page .nav,
+.portfolio-page .nav.is-scrolled {
+  background: rgba(255, 250, 240, 0.94);
+  border-bottom-color: rgba(201, 154, 90, 0.28);
+  box-shadow: 0 8px 24px rgba(91, 61, 32, 0.08);
+}
+
+.nav__logo,
+.nav__logo-text,
+.nav__link {
+  color: var(--c-text);
+}
+
+.nav__logo-amharic,
+.nav__logo-sub {
+  color: var(--c-text-secondary);
+}
+
+.nav__link:hover {
+  color: var(--c-accent-hover);
+}
+
+.nav__toggle span {
+  background: var(--c-text);
+}
+
+.service-detail-page {
+  background: var(--c-bg);
+  color: var(--c-text);
+}
+
+.service-detail-page .detail-back,
+.service-detail-page .label {
+  color: var(--c-accent-hover);
+}
+
+.service-detail-page .detail-title {
+  color: var(--c-text);
+}
+
+.service-detail-page .detail-lead,
+.service-detail-page .detail-body {
+  color: var(--c-text-secondary);
+}
+
+.service-detail-page .detail-cta {
+  background: var(--c-bg-subtle);
+  border-color: var(--c-border-gold);
+}
+
+.service-detail-page .detail-cta__title {
+  color: var(--c-text);
+}
+
+.service-detail-page .detail-cta__text {
+  color: var(--c-text-secondary);
+}
+
+.cinematic-home {
+  background: var(--c-bg);
+  color: var(--c-text);
+}
+
+.cinematic-panel--hero {
+  background: var(--c-bg-subtle);
+}
+
+.cinematic-hero__veil {
+  background: linear-gradient(90deg, rgba(255, 250, 240, 0.9) 0%, rgba(255, 250, 240, 0.68) 42%, rgba(255, 250, 240, 0.18) 100%);
+}
+
+.cinematic-panel--dark,
+.cinematic-panel--about {
+  background: #f7eddd;
+}
+
+.cinematic-panel--work {
+  background: #fffaf0;
+}
+
+.cinematic-panel--contact {
+  background: #f3e5d0;
+}
+
+.cinematic-panel h1,
+.cinematic-panel h2,
+.cinematic-service strong,
+.cinematic-project__body h3,
+.cinematic-contact a {
+  color: var(--c-text);
+}
+
+.cinematic-eyebrow,
+.cinematic-service__number,
+.cinematic-project__body p {
+  color: var(--c-accent-hover);
+}
+
+.cinematic-lede,
+.cinematic-service small,
+.cinematic-project__body span {
+  color: var(--c-text-secondary);
+}
+
+.cinematic-link,
+.cinematic-project__body a,
+.cinematic-contact__socials a {
+  color: var(--c-accent-hover);
+}
+
+.cinematic-link:hover,
+.cinematic-contact__socials a:hover,
+.cinematic-contact a:hover,
+.cinematic-project__body a:hover {
+  color: #8f512c;
+}
+
+.cinematic-service-list,
+.cinematic-service {
+  border-color: rgba(105, 75, 43, 0.18);
+}
+
+.cinematic-project {
+  background: var(--c-bg-card);
+  border: 1px solid var(--c-border);
+}
+
+.cinematic-project__media {
+  background: var(--c-surface);
+  color: var(--c-accent-hover);
+}
+
+.cinematic-panel__index {
+  color: rgba(98, 85, 72, 0.62);
+}
+
+.footer--minimal {
+  background: #ead8bd;
+  border-top-color: rgba(105, 75, 43, 0.2);
+}
+
+.footer--minimal p,
+.footer--minimal__links {
+  color: var(--c-text-secondary);
+}
+
+.footer--minimal__links a:hover {
+  color: var(--c-accent-hover);
+}
+
+.footer {
+  background-color: #4a3322;
+  border-top-color: rgba(201, 154, 90, 0.3);
+}
+
+.cta-section {
+  background: linear-gradient(135deg, #6b4a2d, #4a3322);
 }
