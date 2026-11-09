@@ -4,6 +4,8 @@
 
 {% block description %}Discover the enterprise systems, business platforms, and software products engineered by Harbe Digital Solutions for Ethiopian and regional businesses.{% endblock %}
 
+{% block body_class %}portfolio-page portfolio-list-page{% endblock %}
+
 {% block content %}
 
 <!-- ═══════════ PAGE HEADER ═══════════ -->
@@ -14,6 +16,9 @@
         <p class="page-header__subtitle reveal reveal--delay-2">
             Real systems built for real operations. Each project represents complex workflows turned into clean, reliable software.
         </p>
+        <a href="{% url 'core:home' %}" class="btn btn--primary page-header__action reveal reveal--delay-3">
+            Back to Home <span class="btn__arrow">→</span>
+        </a>
     </div>
 </section>
 
@@ -38,7 +43,7 @@
                     {% endif %}
                     <h2 class="portfolio-item__title">{{ project.title }}</h2>
                     <p class="portfolio-item__desc">{{ project.short_description }}</p>
-                    <a href="{% url 'portfolio:detail' project.pk %}" class="btn btn--outline" style="align-self: flex-start;">
+                    <a href="{% url 'portfolio:detail' project.pk %}" class="btn btn--outline portfolio-item__link">
                         View Case Study <span class="btn__arrow">→</span>
                     </a>
                 </div>

@@ -33,7 +33,7 @@
                         <h2 id="services-title">Simple systems for ambitious businesses.</h2>
                         <div class="cinematic-service-list">
                             {% for service in featured_services|slice:":3" %}
-                            <a class="cinematic-service" href="{% url 'services:detail' service.pk %}">
+                            <a class="cinematic-service" href="{% url 'services:detail' service.pk %}" data-preserve-home-scroll>
                                 <span class="cinematic-service__number">0{{ forloop.counter }}</span>
                                 <span>
                                     <strong>{{ service.name }}</strong>

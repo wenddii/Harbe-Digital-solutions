@@ -25,15 +25,32 @@ function initHorizontalScroll() {
   const track = stage && stage.querySelector('.cinematic-track');
   if (!stage || !track) return;
 
+  const homeScrollKey = 'harbe-home-scroll-position';
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isMobile = () => window.matchMedia('(max-width: 767px)').matches;
   let maxTranslate = 0;
   let stageTop = 0;
   let frame = null;
+  let restored = false;
+
+  const restoreHomeScroll = () => {
+    if (restored) return;
+    restored = true;
+
+    const savedPosition = sessionStorage.getItem(homeScrollKey);
+    if (savedPosition === null) return;
+
+    sessionStorage.removeItem(homeScrollKey);
+    const scrollY = Number(savedPosition);
+    if (Number.isFinite(scrollY)) {
+      requestAnimationFrame(() => window.scrollTo(0, scrollY));
+    }
+  };
 
   const setLinearLayout = () => {
     stage.classList.add('is-linear');
     stage.style.height = 'auto';
+    restoreHomeScroll();
   };
 
   const measure = () => {
@@ -47,6 +64,7 @@ function initHorizontalScroll() {
     stageTop = stage.getBoundingClientRect().top + window.scrollY;
     stage.style.height = `${maxTranslate + window.innerHeight}px`;
     update();
+    restoreHomeScroll();
   };
 
   const update = () => {
@@ -83,6 +101,12 @@ function initHorizontalScroll() {
         top: stageTop + targetProgress * maxTranslate,
         behavior: 'smooth'
       });
+    });
+  });
+
+  document.querySelectorAll('[data-preserve-home-scroll]').forEach(link => {
+    link.addEventListener('click', () => {
+      sessionStorage.setItem(homeScrollKey, String(window.scrollY));
     });
   });
 

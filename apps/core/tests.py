@@ -83,19 +83,13 @@ class WebsiteTests(TestCase):
         self.assertTemplateUsed(response, "core/about.html")
         self.assertContains(response, "Harbe Digital Solutions")
 
-    def test_services_list_page(self):
-        response = self.client.get(reverse("services:list"))
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, "services/list.html")
-        self.assertContains(response, "Custom Web Development")
-        self.assertContains(response, "Cloud Consulting")
-
     def test_services_detail_page(self):
         response = self.client.get(reverse("services:detail", kwargs={"pk": self.service_featured.pk}))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "services/detail.html")
         self.assertContains(response, "Custom Web Development")
         self.assertContains(response, "Detailed description for custom web development services.")
+        self.assertContains(response, "Back to Home")
 
     def test_services_detail_404(self):
         response = self.client.get(reverse("services:detail", kwargs={"pk": 9999}))

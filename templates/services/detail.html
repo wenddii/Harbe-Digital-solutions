@@ -6,11 +6,11 @@
 
 {% block content %}
 
-<section class="detail-page">
+<section class="detail-page service-detail-page">
     <div class="container container--narrow">
 
-        <a href="{% url 'services:list' %}" class="detail-back reveal">
-            ← Back to Services
+        <a href="{% url 'core:home' %}" class="detail-back reveal">
+            ← Back to Home
         </a>
 
         {% if service.image %}
