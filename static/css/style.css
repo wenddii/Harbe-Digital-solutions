@@ -485,6 +485,50 @@ button {
 .nav.is-menu-open .nav__logo-sub { color: var(--c-text-muted); }
 .nav.is-menu-open .nav__logo-amharic { color: var(--c-text-secondary); }
 
+/* Homepage navigation sits directly over the hero image. */
+body:has(.cinematic-home) .nav,
+body:has(.cinematic-home) .nav.is-scrolled {
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+body:has(.cinematic-home) .nav__logo,
+body:has(.cinematic-home) .nav__logo-text,
+body:has(.cinematic-home) .nav__link {
+  color: var(--c-white);
+}
+
+body:has(.cinematic-home) .nav__toggle span {
+  background: var(--c-white);
+}
+
+body:has(.cinematic-home) .nav__logo-mark {
+  background: transparent;
+  color: var(--c-white);
+  border-color: rgba(255, 255, 255, 0.72);
+}
+
+body:has(.cinematic-home) .nav__logo-amharic,
+body:has(.cinematic-home) .nav__logo-sub {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+body:has(.cinematic-home) .nav__link:hover,
+body:has(.cinematic-home) .nav__logo:hover .nav__logo-mark {
+  color: var(--c-white);
+}
+
+body:has(.cinematic-home) .nav__toggle.is-open span,
+body:has(.cinematic-home) .nav.is-menu-open .nav__logo,
+body:has(.cinematic-home) .nav.is-menu-open .nav__logo-text,
+body:has(.cinematic-home) .nav.is-menu-open .nav__logo-sub,
+body:has(.cinematic-home) .nav.is-menu-open .nav__logo-amharic {
+  color: var(--c-white);
+}
+
 @media (max-width: 860px) {
   .nav__toggle { display: flex; }
   .nav__links {
@@ -510,6 +554,14 @@ button {
   .nav__cta {
     font-size: var(--text-base);
     padding: 12px 28px;
+  }
+
+  body:has(.cinematic-home) .nav__links {
+    background: transparent;
+  }
+
+  body:has(.cinematic-home) .nav__link {
+    color: var(--c-white);
   }
 }
 
