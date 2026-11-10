@@ -2397,19 +2397,19 @@ body:has(.cinematic-home) .nav.is-menu-open .nav__logo-amharic {
   }
 
   .cinematic-panel--work {
-    background: #172b4d;
+    background: var(--c-bg);
   }
 
   .cinematic-panel--work .cinematic-panel__index,
   .cinematic-panel--work h2,
   .cinematic-panel--work .cinematic-lede {
-    color: #ffffff;
+    color: var(--c-text);
   }
 
   .cinematic-panel--work .cinematic-eyebrow,
   .cinematic-panel--work .cinematic-link,
   .cinematic-panel--work .cinematic-link:hover {
-    color: #93c5fd;
+    color: var(--c-accent);
   }
 
   .cinematic-panel--contact {
