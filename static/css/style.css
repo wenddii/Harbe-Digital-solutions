@@ -2482,6 +2482,7 @@ body:has(.cinematic-home) .nav.is-menu-open .nav__logo-amharic {
     width: min(34vw, 420px);
     flex: 0 0 min(34vw, 420px);
     background: var(--c-bg-card);
+    border: 1px solid rgba(23, 43, 77, 0.2);
   }
 
   .cinematic-project__media {
