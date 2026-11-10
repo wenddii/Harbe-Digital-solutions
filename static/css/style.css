@@ -2337,15 +2337,34 @@ button {
 
   .cinematic-panel--dark,
   .cinematic-panel--about {
-    background: var(--c-bg-subtle);
+    background: #eaf0fa;
+  }
+
+  .cinematic-panel--about {
+    background: #f0f4f8;
   }
 
   .cinematic-panel--work {
-    background: var(--c-bg);
+    background: #ffffff;
   }
 
   .cinematic-panel--contact {
-    background: var(--c-bg-subtle);
+    background: #172b4d;
+    color: #ffffff;
+  }
+
+  .cinematic-panel--contact .cinematic-panel__index,
+  .cinematic-panel--contact h2,
+  .cinematic-panel--contact .cinematic-lede,
+  .cinematic-panel--contact .cinematic-contact a {
+    color: #ffffff;
+  }
+
+  .cinematic-panel--contact .cinematic-eyebrow,
+  .cinematic-panel--contact .cinematic-contact__socials a,
+  .cinematic-panel--contact .cinematic-contact__socials a:hover,
+  .cinematic-panel--contact .cinematic-contact a:hover {
+    color: #93c5fd;
   }
 
   .cinematic-service-list {
